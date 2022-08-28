@@ -1,4 +1,5 @@
 using System.Collections;
+using Logic.Visual;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
@@ -8,13 +9,13 @@ namespace Logic.Spaceships.Weapon
         [SerializeField] private BlasterCharge _blasterCharge;
 
         private ObjectPool<BlasterCharge> _blasterChargePool;
-        private ObjectPool<ParticleSystem> _effectHitPool;
+        private ObjectPool<Effect> _effectHitPool;
         private WaitForSeconds _reload;
 
         private void Awake()
         {
             _blasterChargePool = new ObjectPool<BlasterCharge>(_blasterCharge, transform);
-            _effectHitPool = new ObjectPool<ParticleSystem>(_hitEffectPrefab, transform);
+            _effectHitPool = new ObjectPool<Effect>(_hitEffectPrefab, transform);
             _reload = new WaitForSeconds(_reloadTime);
         }
 
@@ -33,7 +34,8 @@ namespace Logic.Spaceships.Weapon
 
         public void ReturnCharge(BlasterCharge charge)
         {
-            Instantiate(_hitEffectPrefab, charge.transform.position, Quaternion.identity, transform);
+            var effect = _effectHitPool.Take(charge.transform.position);
+            effect.Callback += () => _effectHitPool.Return(effect);
             _blasterChargePool.Return(charge);
             charge.OnDestruction -= ReturnCharge;
         }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 484542}
   - component: {fileID: 19897948}
   - component: {fileID: 19957498}
+  - component: {fileID: 6477157765707014842}
   m_Layer: 0
   m_Name: LightningStrikeTallBlue
   m_TagString: Untagged
@@ -4852,6 +4853,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6477157765707014842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f28d0cc15247d884ca92916f42a45a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 19897948}
 --- !u!1 &129948
 GameObject:
   m_ObjectHideFlags: 0

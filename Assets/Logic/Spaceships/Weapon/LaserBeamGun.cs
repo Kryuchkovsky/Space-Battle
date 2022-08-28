@@ -1,4 +1,5 @@
 using Logic.Spaceships.Services;
+using Logic.Visual;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
@@ -9,7 +10,7 @@ namespace Logic.Spaceships.Weapon
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] [Min(0)] private float _turnOffDelay = 0.25f;
 
-        private ParticleSystem _hitEffect;
+        private Effect _hitEffect;
         private float _delay;
 
         private void Awake()
@@ -29,9 +30,9 @@ namespace Logic.Spaceships.Weapon
                     _audioSource.Stop();
                 }
                 
-                if (_hitEffect.isPlaying)
+                if (_hitEffect.ParticleSystem.isPlaying)
                 {
-                    _hitEffect.Stop();
+                    _hitEffect.ParticleSystem.Stop();
                 }
             }
         }
@@ -57,9 +58,9 @@ namespace Logic.Spaceships.Weapon
                 _audioSource.Play();
             }
 
-            if (!_hitEffect.isPlaying)
+            if (!_hitEffect.ParticleSystem.isPlaying)
             {
-                _hitEffect.Play();
+                _hitEffect.ParticleSystem.Play();
             }
         }
     }

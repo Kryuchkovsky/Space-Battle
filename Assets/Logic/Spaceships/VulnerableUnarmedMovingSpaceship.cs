@@ -18,8 +18,9 @@ namespace Logic.Spaceships
             _damageAgent.OnDamageTake += _damageable.TakeDamage;
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
+            base.OnDestroy();
             _damageAgent.OnDamageTake -= _damageable.TakeDamage;
         }
 

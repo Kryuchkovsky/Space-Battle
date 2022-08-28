@@ -35,7 +35,7 @@ namespace Logic.Core
             }
 
             _player.Init();
-            _battleBuilder.CreateEnemy();
+            _battleBuilder.LaunchSpawn();
             _player.CameraPriority = _initalCamera.Priority + 1;
             _gameIsStarted = true;
         }

@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 179294643}
-  _hitEffectPrefab: {fileID: 19897948, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  _hitEffectPrefab: {fileID: 6477157765707014842, guid: ce5715dcf97590b4cbec21f0ed7cf1ed,
+    type: 3}
   _damage: 25
   _firingRange: 5000
   _reloadTime: 0.1
@@ -212,7 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 796193285}
-  _hitEffectPrefab: {fileID: 19897948, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  _hitEffectPrefab: {fileID: 6477157765707014842, guid: ce5715dcf97590b4cbec21f0ed7cf1ed,
+    type: 3}
   _damage: 25
   _firingRange: 5000
   _reloadTime: 0.1
@@ -536,9 +538,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 1206685983}
-  _hitEffectPrefab: {fileID: 198984355512589716, guid: 3652379d21b4c824686891f8f3830088,
+  _hitEffectPrefab: {fileID: 7691641587514746483, guid: 3652379d21b4c824686891f8f3830088,
     type: 3}
-  _damage: 100
+  _damage: 200
   _firingRange: 5000
   _reloadTime: 0
   _type: 1
@@ -791,9 +793,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 1218688930}
-  _hitEffectPrefab: {fileID: 198984355512589716, guid: 3652379d21b4c824686891f8f3830088,
+  _hitEffectPrefab: {fileID: 7691641587514746483, guid: 3652379d21b4c824686891f8f3830088,
     type: 3}
-  _damage: 100
+  _damage: 200
   _firingRange: 5000
   _reloadTime: 0
   _type: 1
@@ -2613,6 +2615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca5493df8214184c887774d58e38de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1545487700801256300}
   _camera: {fileID: 1125886384}
   _weaponHolder: {fileID: 229076670}
   _inputHandler: {fileID: 6840833056795521708}
