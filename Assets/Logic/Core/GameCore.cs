@@ -1,27 +1,30 @@
 using System;
 using Cinemachine;
-using Logic.Player;
+using Logic.Services;
+using Logic.Spaceships;
 using UnityEngine;
 
 namespace Logic.Core
 {
     public class GameCore : MonoBehaviour
     {
-        [SerializeField] private PlayerSpaceship _playerSpaceship;
         [SerializeField] private CinemachineVirtualCamera _initalCamera;
-
+        [SerializeField] private BattleBuilder _battleBuilder;
+        
+        private InvulnerableArmedStandingSpaceship _player;
         private bool _gameIsStarted;
 
         private void Awake()
         {
-            _initalCamera.Priority = _playerSpaceship.CameraPriority + 1;
-            
-            _playerSpaceship.OnClick += StartGame;
+            _battleBuilder.Init();
+            _player = _battleBuilder.CreatePlayer();
+            _initalCamera.Priority = _player.CameraPriority + 1;
+            _player.OnClick += StartGame;
         }
 
         private void OnDestroy()
         {
-            _playerSpaceship.OnClick -= StartGame;
+            _player.OnClick -= StartGame;
         }
 
         public void StartGame()
@@ -31,7 +34,9 @@ namespace Logic.Core
                 return;
             }
 
-            _playerSpaceship.CameraPriority = _initalCamera.Priority + 1;
+            _player.Init();
+            _battleBuilder.CreateEnemy();
+            _player.CameraPriority = _initalCamera.Priority + 1;
             _gameIsStarted = true;
         }
     }

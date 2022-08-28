@@ -1,4 +1,5 @@
 using System.Collections;
+using Logic.Spaceships.Weapon;
 using UnityEngine;
 
 namespace Logic.Weapon

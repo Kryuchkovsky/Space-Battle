@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Logic.Weapon;
 using UnityEngine;
 
-namespace Logic.Weapon
+namespace Logic.Spaceships.Weapon
 {
-    public class WeaponHandler : MonoBehaviour
+    public class WeaponHolder : MonoBehaviour
     {
         [SerializeField] private List<BaseWeapon> _weapons;
-        [SerializeField] private InputHandler _inputHandler;
-        [SerializeField] private LayerMask _mask;
 
         private List<BaseWeapon> _selectedWeapons;
         private List<WeaponType> _weaponTypes;
-        private Camera _camera;
         private WaitForSeconds _weaponSwitching;
         private int _weaponTypeIndex;
         private int _weaponIndex;
@@ -23,16 +21,9 @@ namespace Logic.Weapon
 
         private void Awake()
         {
-            _camera = Camera.main;
             _weaponTypes = _weapons.Select(s => s.Type).ToList();
             _selectedWeaponType = _weaponTypes[_weaponTypeIndex];
             SelectWeapon();
-            _inputHandler.OnInput += Shoot;
-        }
-
-        private void OnDestroy()
-        {
-            _inputHandler.OnInput -= Shoot;
         }
 
         public void NextWeapon()
@@ -49,7 +40,7 @@ namespace Logic.Weapon
         
         public void NextWeaponFromSelected() => _weaponIndex = _weaponIndex == _selectedWeapons.Count - 1 ? 0 : _weaponIndex + 1;
 
-        private void Shoot(Vector3 inputPos)
+        public void Shoot(Vector3 targetPosition)
         {
             var weapon = _selectedWeapons[_weaponIndex];
             
@@ -57,13 +48,8 @@ namespace Logic.Weapon
             {
                 return;
             }
-                
-            var ray = _camera.ScreenPointToRay(inputPos);
-            var endPoint = Physics.Raycast(ray, out RaycastHit hit, _mask)
-                ? hit.point
-                : _camera.transform.position + ray.direction * weapon.FiringRange;
-                
-            weapon.Shoot(endPoint);
+            
+            weapon.Shoot(targetPosition);
 
             if (weapon.ReloadTime > 0)
             {

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae04cad5dce96fd4298bc6753214e698, type: 3}
+  m_Name: Base Level Data
+  m_EditorClassIdentifier: 
+  _enemySpaceships:
+  - {fileID: 5681583905043568723, guid: 608bb5cf5593f4244b5a88512337d6b7, type: 3}
+  - {fileID: 6849517258039786860, guid: 71274db164e41d5408d88dabcf0116dc, type: 3}
+  _playerSpaceships:
+  - {fileID: 229076671, guid: f426faabebf5cdf40afa88d3fc64d6a8, type: 3}

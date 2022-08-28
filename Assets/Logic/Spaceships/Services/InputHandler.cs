@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Logic.Weapon
+namespace Logic.Spaceships.Services
 {
     public class InputHandler : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
-        public event Action<Vector3> OnInput;
+        public event Action<Ray> OnInput;
         
         private bool _hasInput;
         
@@ -14,10 +14,12 @@ namespace Logic.Weapon
         {
             if (_hasInput)
             {
-                OnInput?.Invoke(Input.mousePosition);
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                OnInput?.Invoke(ray);
             }
         }
 
+        public void SetStatus(bool status) => gameObject.SetActive(status);
         public void OnPointerDown(PointerEventData eventData) => _hasInput = true;
         public void OnPointerUp(PointerEventData eventData) => _hasInput = false;
     }

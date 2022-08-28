@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7290178029249195021
+--- !u!1 &799443089410688546
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7290178029249195020}
+  - component: {fileID: 23610833385249944}
+  - component: {fileID: 5681583905043568723}
   m_Layer: 0
   m_Name: ThrantaClassCorvette
   m_TagString: Untagged
@@ -16,34 +17,49 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7290178029249195020
+--- !u!4 &23610833385249944
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7290178029249195021}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 799443089410688546}
+  m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7107053185351244292}
+  - {fileID: 5073293117327501031}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7290178029103758831
+--- !u!114 &5681583905043568723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799443089410688546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f26db63b34f048ea9787a9742c26d7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageAgent: {fileID: 1976557251044104535}
+  _speed: 100
+  _durabilityPoints: 500
+--- !u!1001 &4750537056432685324
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 7290178029249195020}
+    m_TransformParent: {fileID: 23610833385249944}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
@@ -63,7 +79,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
@@ -88,7 +104,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
@@ -113,14 +129,46 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 65a4126c6090c8a49841a939ca85c07f,
         type: 3}
       propertyPath: m_Name
-      value: Thranta-class-model
+      value: Thranta-class
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 65a4126c6090c8a49841a939ca85c07f, type: 3}
---- !u!4 &7107053185351244292 stripped
+--- !u!4 &5073293117327501031 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 65a4126c6090c8a49841a939ca85c07f,
     type: 3}
-  m_PrefabInstance: {fileID: 7290178029103758831}
+  m_PrefabInstance: {fileID: 4750537056432685324}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5560860980718419037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 65a4126c6090c8a49841a939ca85c07f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4750537056432685324}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3458233756516524996
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560860980718419037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6441163327241775103, guid: 65a4126c6090c8a49841a939ca85c07f, type: 3}
+--- !u!114 &1976557251044104535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560860980718419037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a72d1501a972c24eb96c00525d921b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

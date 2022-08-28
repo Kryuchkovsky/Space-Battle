@@ -19,9 +19,9 @@ namespace Logic
         public T Take(Vector3 position = new Vector3(), Quaternion rotation = new Quaternion())
         {
             T obj = _objects.Count == 0 ? Object.Instantiate(_prefab, _parent) : _objects.Pop();
+            obj.gameObject.SetActive(true);
             obj.transform.position = position;
             obj.transform.rotation = rotation;
-            obj.gameObject.SetActive(true);
 
             return obj;
         }

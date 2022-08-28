@@ -1,12 +1,14 @@
 using System;
+using Logic.Spaceships.Services;
 using UnityEngine;
 
-namespace Logic.Weapon
+namespace Logic.Spaceships.Weapon
 {
     public class BlasterCharge : MonoBehaviour
     {
         public event Action<BlasterCharge> OnDestruction;
-        
+
+        [SerializeField] private TrailRenderer _trail;
         [SerializeField] [Min(0)] private float _speed = 100;
         
         private float _traveledDistance;
@@ -38,8 +40,23 @@ namespace Logic.Weapon
 
             if (_traveledDistance >= RangeOfFlight)
             {
-                _isDestroyed = true;
-                OnDestruction?.Invoke(this);
+                PrepareToBeDestroyed();
+            }
+        }
+
+        private void PrepareToBeDestroyed()
+        {
+            _trail.Clear();
+            _isDestroyed = true;
+            OnDestruction?.Invoke(this);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out DamageAgent agent))
+            {
+                agent.TakeDamage(50);
+                PrepareToBeDestroyed();
             }
         }
     }
