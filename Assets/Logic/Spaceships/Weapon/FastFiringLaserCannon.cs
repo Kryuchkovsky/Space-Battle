@@ -1,8 +1,7 @@
 using System.Collections;
-using Logic.Spaceships.Weapon;
 using UnityEngine;
 
-namespace Logic.Weapon
+namespace Logic.Spaceships.Weapon
 {
     public class FastFiringLaserCannon : BaseWeapon
     {
@@ -15,7 +14,6 @@ namespace Logic.Weapon
         {
             _blasterChargePool = new ObjectPool<BlasterCharge>(_blasterCharge, transform);
             _reload = new WaitForSeconds(_reloadTime);
-            _canShoot = true;
         }
 
         public override void Shoot(Vector3 endPoint)

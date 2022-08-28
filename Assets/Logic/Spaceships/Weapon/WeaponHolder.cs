@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Logic.Weapon;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
@@ -21,7 +20,7 @@ namespace Logic.Spaceships.Weapon
 
         private void Awake()
         {
-            _weaponTypes = _weapons.Select(s => s.Type).ToList();
+            _weaponTypes = _weapons.Select(s => s.Type).Distinct().ToList();
             _selectedWeaponType = _weaponTypes[_weaponTypeIndex];
             SelectWeapon();
         }
@@ -50,6 +49,7 @@ namespace Logic.Spaceships.Weapon
             }
             
             weapon.Shoot(targetPosition);
+            NextWeaponFromSelected();
 
             if (weapon.ReloadTime > 0)
             {
@@ -61,8 +61,6 @@ namespace Logic.Spaceships.Weapon
                     
                 StartCoroutine(SwitchWeapon());
             }
-                    
-            NextWeaponFromSelected(); 
         }
 
         private IEnumerator SwitchWeapon()
