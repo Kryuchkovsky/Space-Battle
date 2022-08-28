@@ -7,13 +7,14 @@ namespace Logic.Spaceships.Weapon
     public class BlasterCharge : MonoBehaviour
     {
         public event Action<BlasterCharge> OnDestruction;
-
+        
         [SerializeField] private TrailRenderer _trail;
         [SerializeField] [Min(0)] private float _speed = 100;
         
         private float _traveledDistance;
         private bool _isDestroyed;
         
+        public float Damage { get; set; }
         public float RangeOfFlight { get; set; }
 
         private void OnEnable()
@@ -55,9 +56,18 @@ namespace Logic.Spaceships.Weapon
         {
             if (other.TryGetComponent(out DamageAgent agent))
             {
-                agent.TakeDamage(50);
+                agent.TakeDamage(Damage);
                 PrepareToBeDestroyed();
             }
         }
+
+        // private void OnCollisionEnter(Collision collision)
+        // {
+        //     if (collision.collider.TryGetComponent(out DamageAgent agent))
+        //     {
+        //         agent.TakeDamage(Damage);
+        //         PrepareToBeDestroyed();
+        //     }
+        // }
     }
 }

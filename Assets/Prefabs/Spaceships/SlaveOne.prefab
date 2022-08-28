@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 179294643}
-  _damage: 75
-  _firingRange: 10000
+  _hitEffectPrefab: {fileID: 19897948, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  _damage: 25
+  _firingRange: 5000
   _reloadTime: 0.1
   _type: 0
   _blasterCharge: {fileID: 4570938323529323857, guid: a88870ba92c239f4b8c264db0efb54d1,
@@ -211,8 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 796193285}
-  _damage: 75
-  _firingRange: 10000
+  _hitEffectPrefab: {fileID: 19897948, guid: ce5715dcf97590b4cbec21f0ed7cf1ed, type: 3}
+  _damage: 25
+  _firingRange: 5000
   _reloadTime: 0.1
   _type: 0
   _blasterCharge: {fileID: 4570938323529323857, guid: a88870ba92c239f4b8c264db0efb54d1,
@@ -279,7 +281,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.5595075, y: 1}
+    m_SensorSize: {x: 1.6033756, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -435,7 +437,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c49909bd7610d744d9fc6b7fdf7d2987, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fc57787ca79e9f943ad60489e71ee941, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -534,8 +536,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 1206685983}
-  _damage: 120
-  _firingRange: 1000
+  _hitEffectPrefab: {fileID: 198984355512589716, guid: 3652379d21b4c824686891f8f3830088,
+    type: 3}
+  _damage: 100
+  _firingRange: 5000
   _reloadTime: 0
   _type: 1
   _audioSource: {fileID: 5531724455543096456}
@@ -688,7 +692,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c49909bd7610d744d9fc6b7fdf7d2987, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fc57787ca79e9f943ad60489e71ee941, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -787,8 +791,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 1218688930}
-  _damage: 120
-  _firingRange: 1000
+  _hitEffectPrefab: {fileID: 198984355512589716, guid: 3652379d21b4c824686891f8f3830088,
+    type: 3}
+  _damage: 100
+  _firingRange: 5000
   _reloadTime: 0
   _type: 1
   _audioSource: {fileID: 1702795353480458047}

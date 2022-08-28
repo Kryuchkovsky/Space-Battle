@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Logic
 {
-    public class ObjectPool<T> where T : MonoBehaviour
+    public class ObjectPool<T> where T : Component
     {
         private Stack<T> _objects;
         private T _prefab;

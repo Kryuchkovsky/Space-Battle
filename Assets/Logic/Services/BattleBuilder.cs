@@ -1,6 +1,7 @@
 using System;
 using Logic.Data;
 using Logic.Spaceships;
+using Logic.Spaceships.Services;
 using UnityEngine;
 
 namespace Logic.Services

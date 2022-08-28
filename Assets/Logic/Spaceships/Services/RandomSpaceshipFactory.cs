@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Logic.Spaceships
+namespace Logic.Spaceships.Services
 {
     public class RandomSpaceshipFactory<T> : AbstractFactory<T> where T : Spaceship
     {
