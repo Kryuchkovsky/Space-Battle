@@ -2122,8 +2122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 1545487700801256300}
   _weaponHolders:
-  - {fileID: 1384527208025050174}
   - {fileID: 2800431149550473048}
+  - {fileID: 1384527208025050174}
   _camera: {fileID: 1125886384}
   _inputHandler: {fileID: 6840833056795521708}
   _interface: {fileID: 3678996841583349549}

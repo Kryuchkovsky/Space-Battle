@@ -33,9 +33,8 @@ namespace Logic.Spaceships
             _inputHandler.SetStatus(false);
         }
 
-        protected void OnDestroy()
+        private void OnDestroy()
         {
-            base.OnDestroy();
             _inputHandler.OnInput -= Shoot;
         }
 

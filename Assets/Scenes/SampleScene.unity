@@ -391,6 +391,12 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!4 &577279539 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5077138590369901357, guid: ff79f9da73414764e956520c9fe4b61a,
+    type: 3}
+  m_PrefabInstance: {fileID: 5077138589792632094}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,6 +641,26 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5077138590369901357, guid: ff79f9da73414764e956520c9fe4b61a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077138590369901357, guid: ff79f9da73414764e956520c9fe4b61a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077138590369901357, guid: ff79f9da73414764e956520c9fe4b61a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5077138590369901357, guid: ff79f9da73414764e956520c9fe4b61a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5077138590608332180, guid: ff79f9da73414764e956520c9fe4b61a,
         type: 3}
       propertyPath: m_RootOrder
@@ -690,6 +716,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5077138590608332182, guid: ff79f9da73414764e956520c9fe4b61a,
+        type: 3}
+      propertyPath: _enemySpawnPoint
+      value: 
+      objectReference: {fileID: 577279539}
     - target: {fileID: 5077138590608332183, guid: ff79f9da73414764e956520c9fe4b61a,
         type: 3}
       propertyPath: _clueView

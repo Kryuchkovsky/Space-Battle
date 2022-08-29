@@ -20,9 +20,10 @@ namespace Logic.Spaceships
         
         public void TakeDamage(float damage) => _damageable.TakeDamage(damage);
 
-        protected void OnDestroy()
+        protected void InvokeDestruction()
         {
             OnSpaceshipDestroy?.Invoke();
+            Destroy(gameObject);
         }
     }
 }

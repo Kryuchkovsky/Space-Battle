@@ -12,7 +12,7 @@ namespace Logic.Services
     {
         [SerializeField] private LevelData _data;
         [SerializeField] private Transform _playerSpawnPoint;
-        [SerializeField] private Transform _enemiesSpawnPoint;
+        [SerializeField] private Transform _enemySpawnPoint;
 
         private RandomSpaceshipFactory<InvulnerableArmedStandingSpaceship> _playerSpaceshipFactory;
         private RandomSpaceshipFactory<VulnerableUnarmedMovingSpaceship> _enemiesSpaceshipFactory;
@@ -55,11 +55,11 @@ namespace Logic.Services
         {
             while (_isSpawning)
             {
-                var position = _enemiesSpawnPoint.position + new Vector3(
+                var position = _enemySpawnPoint.position + new Vector3(
                     Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange),
                     Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange), 
                     Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange));
-                var rotation = Quaternion.LookRotation(_enemiesSpawnPoint.forward);
+                var rotation = Quaternion.LookRotation(-_player.transform.right);
                 _enemy ??= _enemiesSpaceshipFactory.Create(position, rotation);
                 var hasCollision = Physics.CheckBox(position, _enemy.Size / 2, rotation);
                 _enemy.gameObject.SetActive(!hasCollision);
@@ -72,13 +72,15 @@ namespace Logic.Services
                 {
                     var enemy = _enemy;
                     enemy.transform.position = position;
+                    enemy.Speed = _data.SpaceshipSpeed;
+                    enemy.SetDestructionDistance(_data.DestructionDistance);
                     enemy.OnSpaceshipDestroy += () =>
                     {
                         var effect = _destructionEffectPool.Take(enemy.transform.position);
                         effect.Callback += () => _destructionEffectPool.Return(effect);
                     };
-                    
                     _enemy = null;
+                    
                     yield return _interval;
                 }
             }
