@@ -1,4 +1,5 @@
 using System.Collections;
+using Logic.Patterns;
 using Logic.Visual;
 using UnityEngine;
 
@@ -32,7 +33,7 @@ namespace Logic.Spaceships.Weapon
             }
         }
 
-        public void ReturnCharge(BlasterCharge charge)
+        private void ReturnCharge(BlasterCharge charge)
         {
             var effect = _effectHitPool.Take(charge.transform.position);
             effect.Callback += () => _effectHitPool.Return(effect);
@@ -40,7 +41,7 @@ namespace Logic.Spaceships.Weapon
             charge.OnDestruction -= ReturnCharge;
         }
 
-        public IEnumerator Reload()
+        private IEnumerator Reload()
         {
             _canShoot = false;
             yield return _reload;

@@ -17,3 +17,7 @@ MonoBehaviour:
   - {fileID: 6849517258039786860, guid: 71274db164e41d5408d88dabcf0116dc, type: 3}
   _playerSpaceships:
   - {fileID: 229076671, guid: f426faabebf5cdf40afa88d3fc64d6a8, type: 3}
+  _destructionEffect: {fileID: 1774465367433480521, guid: c816e04fdd948ef479558e37f6acc4ae,
+    type: 3}
+  _maxSpawnRange: 250
+  _spawnInterval: 5

@@ -1,5 +1,6 @@
 using System.Collections;
 using Logic.Data;
+using Logic.Patterns;
 using Logic.Spaceships;
 using Logic.Spaceships.Services;
 using Logic.Visual;
@@ -12,56 +13,58 @@ namespace Logic.Services
         [SerializeField] private LevelData _data;
         [SerializeField] private Transform _playerSpawnPoint;
         [SerializeField] private Transform _enemiesSpawnPoint;
-        [SerializeField] private Effect _destructionEffect;
-        [SerializeField] [Min(0)] private float _spawnInterval = 5;
-        [SerializeField] [Min(0)] private float _range = 150; 
 
         private RandomSpaceshipFactory<InvulnerableArmedStandingSpaceship> _playerSpaceshipFactory;
         private RandomSpaceshipFactory<VulnerableUnarmedMovingSpaceship> _enemiesSpaceshipFactory;
         private ObjectPool<Effect> _destructionEffectPool;
+        private InvulnerableArmedStandingSpaceship _player;
         private VulnerableUnarmedMovingSpaceship _enemy;
         private WaitForSeconds _interval;
-        private bool _canSpawn = true;
+        private bool _isSpawning;
 
         public void Init()
         {
             _playerSpaceshipFactory = new RandomSpaceshipFactory<InvulnerableArmedStandingSpaceship>(_data.PlayerSpaceships, transform);
             _enemiesSpaceshipFactory = new RandomSpaceshipFactory<VulnerableUnarmedMovingSpaceship>(_data.EnemySpaceships, transform);
-            _destructionEffectPool = new ObjectPool<Effect>(_destructionEffect, transform);
-            _interval = new WaitForSeconds(_spawnInterval);
+            _destructionEffectPool = new ObjectPool<Effect>(_data.DestructionEffect, transform);
+            _interval = new WaitForSeconds(_data.SpawnInterval);
         }
 
         public InvulnerableArmedStandingSpaceship CreatePlayer()
         {
-            var player = _playerSpaceshipFactory.Create();
-            player.transform.position = _playerSpawnPoint.position;
-            player.transform.rotation = Quaternion.LookRotation(_playerSpawnPoint.forward);
+            if (!_player)
+            {
+                var rotation = Quaternion.LookRotation(_playerSpawnPoint.forward);
+                _player = _playerSpaceshipFactory.Create(_playerSpawnPoint.position, rotation);
+            }
 
-            return player;
+            return _player;
         }
 
-        public void LaunchSpawn() => StartCoroutine(StartCreatingEnemies());
+        public void SetSpawnStatus(bool status)
+        {
+            _isSpawning = status;
+
+            if (_isSpawning)
+            {
+                StartCoroutine(StartCreatingEnemies());
+            }
+        }
 
         private IEnumerator StartCreatingEnemies()
         {
-            while (true)
+            while (_isSpawning)
             {
-                if (!_canSpawn)
-                {
-                    yield return null;
-                }
-                
                 var position = _enemiesSpawnPoint.position + new Vector3(
-                    Random.Range(-_range, _range),
-                    Random.Range(-_range, _range), 
-                    Random.Range(-_range, _range));
-
+                    Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange),
+                    Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange), 
+                    Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange));
                 var rotation = Quaternion.LookRotation(_enemiesSpawnPoint.forward);
-                
-                _enemy ??= _enemiesSpaceshipFactory.Create();
-                _enemy.transform.position = position + Vector3.up * 10000;
+                _enemy ??= _enemiesSpaceshipFactory.Create(position, rotation);
+                var hasCollision = Physics.CheckBox(position, _enemy.Size / 2, rotation);
+                _enemy.gameObject.SetActive(!hasCollision);
 
-                if (Physics.CheckBox(position, _enemy.Size / 2, rotation))
+                if (hasCollision)
                 {
                     yield return null;
                 }
@@ -69,16 +72,14 @@ namespace Logic.Services
                 {
                     var enemy = _enemy;
                     enemy.transform.position = position;
-                    enemy.transform.rotation = rotation;
                     enemy.OnSpaceshipDestroy += () =>
                     {
                         var effect = _destructionEffectPool.Take(enemy.transform.position);
                         effect.Callback += () => _destructionEffectPool.Return(effect);
                     };
+                    
                     _enemy = null;
-                    _canSpawn = false;
                     yield return _interval;
-                    _canSpawn = true;
                 }
             }
         }

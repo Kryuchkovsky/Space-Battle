@@ -60,14 +60,5 @@ namespace Logic.Spaceships.Weapon
                 PrepareToBeDestroyed();
             }
         }
-
-        // private void OnCollisionEnter(Collision collision)
-        // {
-        //     if (collision.collider.TryGetComponent(out DamageAgent agent))
-        //     {
-        //         agent.TakeDamage(Damage);
-        //         PrepareToBeDestroyed();
-        //     }
-        // }
     }
 }
