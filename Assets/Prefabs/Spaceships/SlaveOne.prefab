@@ -49,7 +49,7 @@ MonoBehaviour:
     type: 3}
   _damage: 50
   _firingRange: 5000
-  _reloadTime: 0.1
+  _reloadTime: 0.2
   _blasterCharge: {fileID: 4570938323529323857, guid: a88870ba92c239f4b8c264db0efb54d1,
     type: 3}
 --- !u!1 &785052264
@@ -216,7 +216,7 @@ MonoBehaviour:
     type: 3}
   _damage: 50
   _firingRange: 5000
-  _reloadTime: 0.1
+  _reloadTime: 0.2
   _blasterCharge: {fileID: 4570938323529323857, guid: a88870ba92c239f4b8c264db0efb54d1,
     type: 3}
 --- !u!1 &1125886382
@@ -281,7 +281,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6056339, y: 1}
+    m_SensorSize: {x: 1.7084079, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

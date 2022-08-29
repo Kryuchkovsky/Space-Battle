@@ -33,9 +33,9 @@ namespace Logic.Spaceships.Services
 
             if (_weapons[_weaponIndex].ReloadTime > 0)
             {
-                if (_lastWeaponReload != weapon.ReloadTime)
+                if (_lastWeaponReload != weapon.ReloadTime / _weapons.Count)
                 {
-                    _lastWeaponReload = weapon.ReloadTime;
+                    _lastWeaponReload = weapon.ReloadTime / _weapons.Count;
                     _weaponSwitching = new WaitForSeconds(_lastWeaponReload);
                 }
                     
