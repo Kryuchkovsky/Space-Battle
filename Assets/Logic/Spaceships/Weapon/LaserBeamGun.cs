@@ -42,26 +42,36 @@ namespace Logic.Spaceships.Weapon
             var ray = new Ray(_shotPoint.position, endPoint - _shotPoint.position);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit) && hit.collider.TryGetComponent(out DamageAgent agent))
+            if (Physics.Raycast(ray, out hit))
             {
-                agent.TakeDamage(_damage * Time.deltaTime);
+                if (hit.collider.TryGetComponent(out DamageAgent agent))
+                {
+                    agent.TakeDamage(_damage * Time.deltaTime);
+                }
+
+                _hitEffect.transform.position = hit.point;
+                _hitEffect.transform.rotation = Quaternion.LookRotation(-ray.direction);
+                
+                if (!_hitEffect.ParticleSystem.isPlaying)
+                {
+                    _hitEffect.ParticleSystem.Play();
+                }
             }
-            
+            else if (_hitEffect.ParticleSystem.isPlaying)
+            {
+                _hitEffect.ParticleSystem.Stop();
+            }
+
             _delay = _turnOffDelay;
             _lineRenderer.SetPosition(0, _shotPoint.position);
             _lineRenderer.SetPosition(1,  endPoint);
-            _hitEffect.transform.position = hit.point;
-            _hitEffect.transform.rotation = Quaternion.LookRotation(-ray.direction);
+
 
             if (!_audioSource.isPlaying)
             {
                 _audioSource.Play();
             }
-
-            if (!_hitEffect.ParticleSystem.isPlaying)
-            {
-                _hitEffect.ParticleSystem.Play();
-            }
+            
         }
     }
 }
