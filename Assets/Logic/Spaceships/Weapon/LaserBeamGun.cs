@@ -40,9 +40,8 @@ namespace Logic.Spaceships.Weapon
         public override void Shoot(Vector3 endPoint)
         {
             var ray = new Ray(_shotPoint.position, endPoint - _shotPoint.position);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
                 if (hit.collider.TryGetComponent(out DamageAgent agent))
                 {
@@ -66,12 +65,10 @@ namespace Logic.Spaceships.Weapon
             _lineRenderer.SetPosition(0, _shotPoint.position);
             _lineRenderer.SetPosition(1,  endPoint);
 
-
             if (!_audioSource.isPlaying)
             {
                 _audioSource.Play();
             }
-            
         }
     }
 }

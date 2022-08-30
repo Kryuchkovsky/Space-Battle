@@ -1,7 +1,7 @@
 using System.Collections;
-using Logic.Data;
 using Logic.Patterns;
 using Logic.Spaceships;
+using Logic.Spaceships.Behaviors;
 using Logic.Spaceships.Services;
 using Logic.Visual;
 using UnityEngine;
@@ -10,24 +10,25 @@ namespace Logic.Services
 {
     public class ShootingRangeBattleBuilder : BaseBattleBuilder
     {
-        [SerializeField] private LevelData _data;
         [SerializeField] private Transform _playerSpawnPoint;
         [SerializeField] private Transform _enemySpawnPoint;
+        [SerializeField] private DistanceDestructor _distanceDestructor;
+        [SerializeField] [Min(0)] private float _maxSpawnRange = 250;
+        [SerializeField] [Min(0)] private float _spawnInterval = 5;
+        [SerializeField] [Min(0)] private float _spaceshipSpeed = 120;
 
-        private RandomSpaceshipFactory<InvulnerableArmedStandingSpaceship> _playerSpaceshipFactory;
-        private RandomSpaceshipFactory<VulnerableUnarmedMovingSpaceship> _enemiesSpaceshipFactory;
+        private RandomSpaceshipFactory<Spaceship> _spaceshipFactory;
         private ObjectPool<Effect> _destructionEffectPool;
-        private InvulnerableArmedStandingSpaceship _player;
-        private VulnerableUnarmedMovingSpaceship _enemy;
+        private Spaceship _player;
+        private Spaceship _enemy;
         private WaitForSeconds _interval;
         private bool _isSpawning;
 
-        public override void Init()
+        private void Awake()
         {
-            _playerSpaceshipFactory = new RandomSpaceshipFactory<InvulnerableArmedStandingSpaceship>(_data.PlayerSpaceships, transform);
-            _enemiesSpaceshipFactory = new RandomSpaceshipFactory<VulnerableUnarmedMovingSpaceship>(_data.EnemySpaceships, transform);
+            _spaceshipFactory = new RandomSpaceshipFactory<Spaceship>(_data.Spaceships, transform);
             _destructionEffectPool = new ObjectPool<Effect>(_data.DestructionEffect, transform);
-            _interval = new WaitForSeconds(_data.SpawnInterval);
+            _interval = new WaitForSeconds(_spawnInterval);
         }
 
         public override Spaceship CreatePlayer()
@@ -35,7 +36,8 @@ namespace Logic.Services
             if (!_player)
             {
                 var rotation = Quaternion.LookRotation(_playerSpawnPoint.forward);
-                _player = _playerSpaceshipFactory.Create(_playerSpawnPoint.position, rotation);
+                _player = _spaceshipFactory.Create(_playerSpawnPoint.position, rotation);
+                _player.Init(new InvulnerableState(), new DisabledMovingBehavior(), new PlayerShootingBehavior(InputHandler));
             }
 
             return _player;
@@ -51,11 +53,11 @@ namespace Logic.Services
             while (true)
             {
                 var position = _enemySpawnPoint.position + new Vector3(
-                    Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange),
-                    Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange), 
-                    Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange));
+                    Random.Range(-_maxSpawnRange, _maxSpawnRange),
+                    Random.Range(-_maxSpawnRange, _maxSpawnRange), 
+                    Random.Range(-_maxSpawnRange, _maxSpawnRange));
                 var rotation = Quaternion.LookRotation(-_player.transform.right);
-                _enemy ??= _enemiesSpaceshipFactory.Create(position, rotation);
+                _enemy ??= _spaceshipFactory.Create(position, rotation);
                 var hasCollision = Physics.CheckBox(position, _enemy.Size / 2, rotation);
                 _enemy.gameObject.SetActive(!hasCollision);
 
@@ -66,14 +68,14 @@ namespace Logic.Services
                 else
                 {
                     var enemy = _enemy;
+                    enemy.Init(new VulnerableState(), new MovingForwardBehavior(), new DisabledShootingBehavior());
                     enemy.transform.position = position;
-                    enemy.Speed = _data.SpaceshipSpeed;
-                    enemy.SetDestructionDistance(_data.DestructionDistance);
                     enemy.OnSpaceshipDestroy += () =>
                     {
                         var effect = _destructionEffectPool.Take(enemy.transform.position);
                         effect.Callback += () => _destructionEffectPool.Return(effect);
                     };
+                    _distanceDestructor.AddSpaceship(enemy);
                     _enemy = null;
                     
                     yield return _interval;

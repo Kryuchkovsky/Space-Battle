@@ -42,13 +42,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 799443089410688546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26db63b34f048ea9787a9742c26d7b0, type: 3}
+  m_Script: {fileID: 11500000, guid: e6f6bd818b9135444b898a6ae85b4f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weaponHolders: []
+  _camera: {fileID: 0}
   _meshRenderer: {fileID: 6209577582592171400}
   _damageAgent: {fileID: 1976557251044104535}
-  _speed: 80
+  _touchAgent: {fileID: 8185665824982463752}
   _durabilityPoints: 500
+  _movementSpeed: 120
 --- !u!1 &6277043461844070746
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +527,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a72d1501a972c24eb96c00525d921b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8185665824982463752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5560860980718419037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09970f80f23d3b543a39e132d14c32db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!23 &6209577582592171400 stripped

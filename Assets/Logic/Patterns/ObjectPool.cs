@@ -30,6 +30,7 @@ namespace Logic.Patterns
         {
             _objects.Push(obj);
             obj.gameObject.SetActive(false);
+            obj.transform.parent = _parent;
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localRotation = Quaternion.identity;
         }

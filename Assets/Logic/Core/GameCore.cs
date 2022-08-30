@@ -9,6 +9,7 @@ namespace Logic.Core
     {
         [SerializeField] private BaseBattleBuilder _battleBuilder;
         [SerializeField] private CameraManager _cameraManager;
+        [SerializeField] private GameplayInterface _gameplayInterface;
         [SerializeField] private ClueView _clueView;
         
         private Spaceship _player;
@@ -16,7 +17,7 @@ namespace Logic.Core
 
         private void Awake()
         {
-            _battleBuilder.Init();
+            _battleBuilder.InputHandler = _gameplayInterface.InputHandler;
             _player = _battleBuilder.CreatePlayer();
             
             _cameraManager.Init(_player.transform, _player.Camera);
@@ -25,13 +26,18 @@ namespace Logic.Core
             _clueView.SetStatus(true);
             _clueView.SetScalingStatus(true);
             _clueView.SetText("Click on the spaceship to start the game");
+            _gameplayInterface.gameObject.SetActive(false);
             
-            _player.OnClick += StartGame;
+            _player.TouchAgent.OnTouch += StartGame;
+            _gameplayInterface.NextWeaponButton.onClick.AddListener(_player.NextWeapon);
+            _gameplayInterface.PreviousWeaponButton.onClick.AddListener(_player.NextWeapon);
         }
 
         private void OnDestroy()
         {
-            _player.OnClick -= StartGame;
+            _player.TouchAgent.OnTouch -= StartGame;
+            _gameplayInterface.NextWeaponButton.onClick.RemoveListener(_player.NextWeapon);
+            _gameplayInterface.PreviousWeaponButton.onClick.RemoveListener(_player.NextWeapon);
         }
 
         public void StartGame()
@@ -44,6 +50,7 @@ namespace Logic.Core
             _battleBuilder.StartBattle();
             _cameraManager.ShowBattle();
             _clueView.SetStatus(false);
+            _gameplayInterface.gameObject.SetActive(true);
             _gameIsStarted = true;
         }
     }

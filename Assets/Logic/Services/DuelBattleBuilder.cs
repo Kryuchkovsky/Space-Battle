@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using Logic.Data;
 using Logic.Patterns;
 using Logic.Spaceships;
+using Logic.Spaceships.Behaviors;
 using Logic.Spaceships.Services;
 using Logic.Visual;
 using UnityEngine;
@@ -10,26 +9,17 @@ namespace Logic.Services
 {
     public class DuelBattleBuilder : BaseBattleBuilder
     {
-        [SerializeField] private LevelData _data;
         [SerializeField] private Transform _playerSpawnPoint;
         [SerializeField] private Transform _enemySpawnPoint;
-        [SerializeField] private VulnerableArmedPursuingPlayerSpaceship _playerPrefab;
-        [SerializeField] private VulnerableArmedPursuingSpaceship _enemyPrefab;
 
-        private RandomSpaceshipFactory<VulnerableArmedPursuingPlayerSpaceship> _playerSpaceshipFactory;
-        private RandomSpaceshipFactory<VulnerableArmedPursuingSpaceship> _enemiesSpaceshipFactory;
+        private RandomSpaceshipFactory<Spaceship> _spaceshipFactory;
         private ObjectPool<Effect> _destructionEffectPool;
-        private VulnerableArmedPursuingPlayerSpaceship _player;
-        private VulnerableArmedPursuingSpaceship _enemy;
+        private Spaceship _player;
+        private Spaceship _enemy;
         
-        public override void Init()
+        private void Awake()
         {
-            var players = new List<VulnerableArmedPursuingPlayerSpaceship>();
-            var ememies = new List<VulnerableArmedPursuingSpaceship>();
-            players.Add(_playerPrefab);
-            ememies.Add(_enemyPrefab);
-            _playerSpaceshipFactory = new RandomSpaceshipFactory<VulnerableArmedPursuingPlayerSpaceship>(players, transform);
-            _enemiesSpaceshipFactory = new RandomSpaceshipFactory<VulnerableArmedPursuingSpaceship>(ememies, transform);
+            _spaceshipFactory = new RandomSpaceshipFactory<Spaceship>(_data.Spaceships, transform);
             _destructionEffectPool = new ObjectPool<Effect>(_data.DestructionEffect, transform);
         }
 
@@ -38,7 +28,7 @@ namespace Logic.Services
             if (!_player)
             {
                 var rotation = Quaternion.LookRotation(_playerSpawnPoint.forward);
-                _player = _playerSpaceshipFactory.Create(_playerSpawnPoint.position, rotation);
+                _player = _spaceshipFactory.Create(_playerSpawnPoint.position, rotation);
             }
 
             return _player;
@@ -46,10 +36,10 @@ namespace Logic.Services
 
         public override void StartBattle()
         {
-            _enemy = _enemiesSpaceshipFactory.Create(_enemySpawnPoint.position, Quaternion.LookRotation(_player.transform.forward));
-            _enemy.InitBehaviors();
+            _enemy = _spaceshipFactory.Create(_enemySpawnPoint.position, Quaternion.LookRotation(_player.transform.forward));
+            _enemy.Init(new VulnerableState(), new PursuingBehavior(), new BotShootingBehavior());
             _enemy.Target = _player.transform;
-            _player.InitBehaviors();
+            _player.Init(new VulnerableState(), new PursuingBehavior(), new PlayerShootingBehavior(InputHandler));
             _player.Target = _enemy.transform;
             _player.OnSpaceshipDestroy += () => _destructionEffectPool.Take(_player.transform.position);
             _enemy.OnSpaceshipDestroy += () => _destructionEffectPool.Take(_enemy.transform.position);

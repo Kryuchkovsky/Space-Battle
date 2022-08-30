@@ -1,5 +1,4 @@
 using Logic.Spaceships.Interfaces;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,7 +9,6 @@ namespace Logic.Spaceships.Behaviors
         private Vector2 _randomDirection;
         private Vector3 _up;
         private Quaternion _rotation;
-        private float _movementSpeed = 200;
         private float _rotationSpeed = 60;
         private float _minDistance = 200;
         private float _maxDistance = 700;
@@ -18,7 +16,7 @@ namespace Logic.Spaceships.Behaviors
 
         public void Move(Spaceship spaceship)
         {
-            spaceship.transform.position += spaceship.transform.forward * _movementSpeed * Time.deltaTime;
+            spaceship.transform.position += spaceship.transform.forward * spaceship.MovementSpeed * Time.deltaTime;
 
             if (!spaceship.Target)
             {

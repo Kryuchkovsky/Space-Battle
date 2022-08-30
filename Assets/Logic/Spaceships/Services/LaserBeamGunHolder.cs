@@ -8,11 +8,22 @@ namespace Logic.Spaceships.Services
     {
         [SerializeField] private List<LaserBeamGun> _weapons;
         
+        public override void Init(DamageAgent damageAgent)
+        {
+            _damageAgent = damageAgent;
+            
+            foreach (var weapon in _weapons)
+            {
+                weapon.DamageAgent = _damageAgent;
+                weapon.FiringRange = _firingRange;
+            }
+        }
+        
         public override void Shoot(Vector3 targetPosition)
         {
             foreach (var weapon in _weapons)
             {
-                if (weapon.CanShoot)
+                if (weapon.IsReady)
                 {
                     weapon.Shoot(targetPosition);
                 }

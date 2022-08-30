@@ -7,57 +7,68 @@ using UnityEngine;
 
 namespace Logic.Spaceships
 {
-    public abstract class Spaceship : MonoBehaviour
+    public class Spaceship : MonoBehaviour
     {
-        public event Action OnClick;
         public event Action OnSpaceshipDestroy;
 
-        [SerializeField] protected List<BaseWeaponHolder> _weaponHolders;
-        [SerializeField] protected CinemachineVirtualCamera _camera;
-        [SerializeField] protected MeshRenderer _meshRenderer;
-        [SerializeField] protected DamageAgent _damageAgent;
-        [SerializeField] [Min(0)] protected float _durabilityPoints = 500;
+        [SerializeField] private List<BaseWeaponHolder> _weaponHolders;
+        [SerializeField] private CinemachineVirtualCamera _camera;
+        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private DamageAgent _damageAgent;
+        [SerializeField] private TouchAgent _touchAgent;
+        [SerializeField] [Min(0)] private float _durabilityPoints = 500;
+        [SerializeField] [Min(0)] private float _movementSpeed = 120;
 
-        protected IDamageable _damageable;
-        protected IMoveable _moveable;
-        protected IShootable _shootable;
+        private IDamageable _damageable;
+        private IMoveable _moveable;
+        private IShootable _shootable;
+        private int _weaponHolderIndex;
 
         public Transform Target { get; set; }
+        public TouchAgent TouchAgent => _touchAgent;
         public CinemachineVirtualCamera Camera => _camera;
         public Vector3 Size => _meshRenderer.bounds.size;
+        public float MovementSpeed => _movementSpeed;
+        public float CurrentDurability { get; set; }
 
-        public abstract void InitBehaviors();
-
-        protected void Init()
+        public void Init(IDamageable damageable, IMoveable moveable, IShootable shootable)
         {
-            _damageable.OnDestroy += InvokeDestruction;
-            _damageAgent.OnDamageTake += _damageable.TakeDamage;
-        }
-
-        protected void Update()
-        {
-            if (_moveable == null)
+            _damageable = damageable;
+            _moveable = moveable;
+            _shootable = shootable;
+            CurrentDurability = _durabilityPoints;
+            
+            foreach (var weaponHolder in _weaponHolders)
             {
-                return;
+                weaponHolder.Init(_damageAgent);
             }
             
-            _moveable.Move(this);
+            _damageAgent.OnDamageTake += TakeDamage;
         }
 
-        protected void OnDestroy()
+        private void OnDestroy()
         {
-            _damageable.OnDestroy -= InvokeDestruction;
-            _damageAgent.OnDamageTake -= _damageable.TakeDamage;
+            _damageAgent.OnDamageTake -= TakeDamage;
         }
 
-        public void TakeDamage(float damage) => _damageable.TakeDamage(damage);
+        private void Update()
+        {
+            _moveable?.Move(this);
 
-        protected void InvokeDestruction()
+            if (_weaponHolders != null)
+            {
+                _shootable?.Shoot(this, _weaponHolders[_weaponHolderIndex]);
+            }
+        }
+
+        public void TakeDamage(float damage) => _damageable.TakeDamage(this, damage);
+        public void NextWeapon() => _weaponHolderIndex = _weaponHolderIndex == _weaponHolders.Count - 1 ? 0 : _weaponHolderIndex + 1;
+        public void PreviousWeapon() => _weaponHolderIndex = _weaponHolderIndex == 0 ? _weaponHolders.Count - 1 : _weaponHolderIndex - 1;
+
+        public void InvokeDestruction()
         {
             OnSpaceshipDestroy?.Invoke();
             Destroy(gameObject);
         }
-
-        private void OnMouseDown() => OnClick?.Invoke();
     }
 }
