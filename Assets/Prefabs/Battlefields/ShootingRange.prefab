@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 5686209593518658901}
   - component: {fileID: 5166271819298089521}
   m_Layer: 0
-  m_Name: Battlefiled
+  m_Name: ShootingRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -18,6 +18,7 @@ namespace Logic.Services
         [SerializeField] [Min(0)] private float _spaceshipSpeed = 120;
 
         private RandomSpaceshipFactory<Spaceship> _spaceshipFactory;
+        private RandomSpaceshipFactory<Spaceship> _unfinishedSpaceshipFactory;
         private ObjectPool<Effect> _destructionEffectPool;
         private Spaceship _player;
         private Spaceship _enemy;
@@ -27,6 +28,7 @@ namespace Logic.Services
         private void Awake()
         {
             _spaceshipFactory = new RandomSpaceshipFactory<Spaceship>(_data.Spaceships, transform);
+            _unfinishedSpaceshipFactory = new RandomSpaceshipFactory<Spaceship>(_data.UnfinishedSpaceships, transform);
             _destructionEffectPool = new ObjectPool<Effect>(_data.DestructionEffect, transform);
             _interval = new WaitForSeconds(_spawnInterval);
         }
@@ -57,7 +59,7 @@ namespace Logic.Services
                     Random.Range(-_maxSpawnRange, _maxSpawnRange), 
                     Random.Range(-_maxSpawnRange, _maxSpawnRange));
                 var rotation = Quaternion.LookRotation(-_player.transform.right);
-                _enemy ??= _spaceshipFactory.Create(position, rotation);
+                _enemy ??= _unfinishedSpaceshipFactory.Create(position, rotation);
                 var hasCollision = Physics.CheckBox(position, _enemy.Size / 2, rotation);
                 _enemy.gameObject.SetActive(!hasCollision);
 

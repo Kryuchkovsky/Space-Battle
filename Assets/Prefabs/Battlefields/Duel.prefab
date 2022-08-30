@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7764090229449292915}
   - component: {fileID: 1549405669547161455}
   m_Layer: 0
-  m_Name: DuelBattlefiled
+  m_Name: Duel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

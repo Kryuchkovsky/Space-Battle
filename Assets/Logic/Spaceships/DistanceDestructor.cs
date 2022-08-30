@@ -21,6 +21,12 @@ namespace Logic.Spaceships
             for (int i = 0; i < _spaceships.Count; i++)
             {
                 var spaceship = _spaceships.ElementAt(i);
+
+                if (spaceship.Key == null)
+                {
+                    _spaceships.Remove(spaceship.Key);
+                    continue;
+                }
                 
                 if ((spaceship.Value - spaceship.Key.transform.position).magnitude >= _destructionDistance)
                 {

@@ -55,7 +55,7 @@ namespace Logic.Spaceships
         {
             _moveable?.Move(this);
 
-            if (_weaponHolders != null)
+            if (_weaponHolders != null && _weaponHolders.Count > 0)
             {
                 _shootable?.Shoot(this, _weaponHolders[_weaponHolderIndex]);
             }
@@ -70,5 +70,13 @@ namespace Logic.Spaceships
             OnSpaceshipDestroy?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public enum SpaceshipType
+    {
+        MilleniumFalcon,
+        SlaveOne,
+        ThrantaClassCorvette,
+        ValorClassCruiser
     }
 }

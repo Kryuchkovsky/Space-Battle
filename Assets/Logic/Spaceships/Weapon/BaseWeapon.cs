@@ -21,7 +21,7 @@ namespace Logic.Spaceships.Weapon
         {
             var ray = new Ray(_shotPoint.position, (endPoint - _shotPoint.position).normalized * 100);
             var hasHit = Physics.Raycast(ray, out RaycastHit hit, FiringRange);
-            var result = !hasHit || hit.collider.TryGetComponent(out DamageAgent agent) && agent != DamageAgent;
+            var result = !hasHit || hit.collider.TryGetComponent(out DamageAgent agent) && agent != DamageAgent || agent == null;
             
             return result;
         }
