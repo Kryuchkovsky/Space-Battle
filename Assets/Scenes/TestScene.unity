@@ -845,17 +845,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6587043597800755221, guid: f71e76a2fd37bfb49bcc029f07e64f54,
-        type: 3}
-      propertyPath: m_Lens.m_SensorSize.x
-      value: 1.8688784
-      objectReference: {fileID: 0}
-    - target: {fileID: 7764090229449292915, guid: f71e76a2fd37bfb49bcc029f07e64f54,
-        type: 3}
-      propertyPath: _playerPrefab
-      value: 
-      objectReference: {fileID: 8801066634130986007, guid: c23d4ad62be56444a9710ff46d26425b,
-        type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f71e76a2fd37bfb49bcc029f07e64f54, type: 3}

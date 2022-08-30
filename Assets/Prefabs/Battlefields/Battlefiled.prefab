@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6056339, y: 1}
+    m_SensorSize: {x: 1.8688784, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -220,14 +220,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5077138590369901356}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1500, y: 0, z: 1500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1800, y: 0, z: 1500}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5077138590608332180}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5077138590608332185
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 5077138590608332183}
   - component: {fileID: 5077138590608332182}
   - component: {fileID: 5686209593518658901}
+  - component: {fileID: 5166271819298089521}
   m_Layer: 0
   m_Name: Battlefiled
   m_TagString: Untagged
@@ -279,6 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _battleBuilder: {fileID: 5077138590608332182}
   _cameraManager: {fileID: 5686209593518658901}
+  _gameplayInterface: {fileID: 0}
   _clueView: {fileID: 0}
 --- !u!114 &5077138590608332182
 MonoBehaviour:
@@ -294,7 +296,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 2013576ec0ad7a8459fb245555c59c85, type: 2}
   _playerSpawnPoint: {fileID: 5077138589331513769}
-  _enemiesSpawnPoint: {fileID: 5077138590369901357}
+  _enemySpawnPoint: {fileID: 5077138590369901357}
+  _distanceDestructor: {fileID: 5166271819298089521}
+  _maxSpawnRange: 250
+  _spawnInterval: 5
+  _spaceshipSpeed: 120
 --- !u!114 &5686209593518658901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,3 +314,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initalCamera: {fileID: 1755345455}
+--- !u!114 &5166271819298089521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5077138590608332185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d55d042077f424990f9286af13e65a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _destructionDistance: 4000

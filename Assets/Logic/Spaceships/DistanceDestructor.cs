@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,7 +11,12 @@ namespace Logic.Spaceships
         
         private Dictionary<Spaceship, Vector3> _spaceships;
 
-        protected void Update()
+        private void Awake()
+        {
+            _spaceships = new Dictionary<Spaceship, Vector3>();
+        }
+
+        private void Update()
         {
             for (int i = 0; i < _spaceships.Count; i++)
             {
