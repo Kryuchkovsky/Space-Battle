@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cinemachine;
 using Logic.Spaceships.Behaviors;
@@ -6,30 +7,38 @@ using UnityEngine;
 
 namespace Logic.Spaceships
 {
-    public class InvulnerableArmedPursuingSpaceship: Spaceship
+    public class VulnerableArmedPursuingSpaceship: Spaceship
     {
         [SerializeField] private List<BaseWeaponHolder> _weaponHolders;
-        [SerializeField] private CinemachineVirtualCamera _camera;
-        [SerializeField] private Canvas _interface;
+
+        [SerializeField] [Min(0)] private float _durabilityPoints;
         
         private int _weaponHolderIndex;
 
-        public void Init()
+        public void Init(Transform target)
         {
+            Target = target;
             InitBehaviors();
-            _interface.enabled = true;
         }
 
-        private void Awake()
+        private void Update()
         {
-            _interface.enabled = false;
+            if (Target)
+            {
+                _moveable.Move(this);
+
+                if (transform.forward == (Target.position - transform.position).normalized)
+                { 
+                    _shootable.Shoot( _weaponHolders[_weaponHolderIndex], new Ray(transform.position, Target.position - transform.position));
+                }
+            }
         }
 
         protected override void InitBehaviors()
         {
-            _damageable = new InvulnerableState();
+            _damageable = new VulnerableState(_durabilityPoints);
             _moveable = new PursuingBehavior();
-            _shootable = new PlayerShootingBehavior();
+            _shootable = new BotShootingBehavior(this);
         }
 
         public void NextWeapon() =>  _weaponHolderIndex = _weaponHolderIndex == _weaponHolders.Count - 1 ? 0 : _weaponHolderIndex + 1;

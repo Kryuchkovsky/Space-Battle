@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Logic.Services
 {
-    public class BattleBuilder : BaseBattleBuilder
+    public class ShootingRangeBattleBuilder : BaseBattleBuilder
     {
         [SerializeField] private LevelData _data;
         [SerializeField] private Transform _playerSpawnPoint;

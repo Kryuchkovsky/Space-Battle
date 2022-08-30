@@ -14,6 +14,7 @@ namespace Logic.Spaceships
         protected IMoveable _moveable;
         protected IShootable _shootable;
 
+        public Transform Target { get; set; }
         public Vector3 Size => _meshRenderer.bounds.size;
         
         protected abstract void InitBehaviors();

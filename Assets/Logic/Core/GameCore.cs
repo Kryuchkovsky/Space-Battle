@@ -7,7 +7,7 @@ namespace Logic.Core
 {
     public class GameCore : MonoBehaviour
     {
-        [SerializeField] private BattleBuilder _battleBuilder;
+        [SerializeField] private BaseBattleBuilder _battleBuilder;
         [SerializeField] private CameraManager _cameraManager;
         [SerializeField] private ClueView _clueView;
         

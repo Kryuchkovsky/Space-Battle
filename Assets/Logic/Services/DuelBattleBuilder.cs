@@ -43,6 +43,7 @@ namespace Logic.Services
         public override void SetSpawnStatus(bool status)
         {
             _enemy = _enemiesSpaceshipFactory.Create(_enemySpawnPoint.position, Quaternion.LookRotation(_player.transform.forward));
+            _enemy.Init(_player.transform);
             _enemy.OnSpaceshipDestroy += () => _destructionEffectPool.Take(_enemy.transform.position);
         }
     }

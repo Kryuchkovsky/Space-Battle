@@ -2066,12 +2066,12 @@ GameObject:
   m_Component:
   - component: {fileID: 818360390476896005}
   - component: {fileID: 229076672}
-  - component: {fileID: 229076671}
+  - component: {fileID: -6132267794863343185}
   - component: {fileID: 1384527208025050174}
   - component: {fileID: 2800431149550473048}
-  - component: {fileID: 5477770276038989489}
+  - component: {fileID: 4286874982725792400}
   m_Layer: 0
-  m_Name: SlaveOne
+  m_Name: SlaveOneEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2109,7 +2109,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 50, z: 15}
   m_Center: {x: 0, y: -10, z: 5}
---- !u!114 &229076671
+--- !u!114 &-6132267794863343185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2118,16 +2118,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6086866631339856142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca5493df8214184c887774d58e38de7, type: 3}
+  m_Script: {fileID: 11500000, guid: da3b527be14c41ca97af31a2f98c8e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _meshRenderer: {fileID: 1545487700801256300}
   _weaponHolders:
   - {fileID: 2800431149550473048}
   - {fileID: 1384527208025050174}
-  _camera: {fileID: 1125886384}
-  _inputHandler: {fileID: 6840833056795521708}
-  _interface: {fileID: 3678996841583349549}
+  _durabilityPoints: 500
 --- !u!114 &1384527208025050174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,7 +2156,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 179294644}
   - {fileID: 796193286}
---- !u!114 &5477770276038989489
+--- !u!114 &4286874982725792400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2831,11 +2829,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5157064193604964729, guid: 5a434cfd45038304bb145ae40cfa1f64,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 229076671}
-    - target: {fileID: 5157064193604964729, guid: 5a434cfd45038304bb145ae40cfa1f64,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: NextWeapon
       objectReference: {fileID: 0}
@@ -2844,11 +2837,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Logic.Spaceships.InvulnerableArmedStandingSpaceship, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 7052063455338451314, guid: 5a434cfd45038304bb145ae40cfa1f64,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 229076671}
     - target: {fileID: 7052063455338451314, guid: 5a434cfd45038304bb145ae40cfa1f64,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -2862,24 +2850,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a434cfd45038304bb145ae40cfa1f64, type: 3}
---- !u!223 &3678996841583349549 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 6293641694997625820, guid: 5a434cfd45038304bb145ae40cfa1f64,
-    type: 3}
-  m_PrefabInstance: {fileID: 7231072241934906609}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6840833056795521708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4230683867037320797, guid: 5a434cfd45038304bb145ae40cfa1f64,
-    type: 3}
-  m_PrefabInstance: {fileID: 7231072241934906609}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fb8d204cfb7214da1328a4ea0d95ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &7871020421457598241 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,

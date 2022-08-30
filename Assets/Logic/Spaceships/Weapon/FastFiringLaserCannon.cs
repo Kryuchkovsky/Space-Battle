@@ -15,8 +15,8 @@ namespace Logic.Spaceships.Weapon
 
         private void Awake()
         {
-            _blasterChargePool = new ObjectPool<BlasterCharge>(_blasterCharge, transform);
-            _effectHitPool = new ObjectPool<Effect>(_hitEffectPrefab, transform);
+            _blasterChargePool = new ObjectPool<BlasterCharge>(_blasterCharge, null);
+            _effectHitPool = new ObjectPool<Effect>(_hitEffectPrefab, null);
             _reload = new WaitForSeconds(_reloadTime);
         }
 
