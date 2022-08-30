@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Logic.Services
 {
-    public class BattleBuilder : MonoBehaviour
+    public class BattleBuilder : BaseBattleBuilder
     {
         [SerializeField] private LevelData _data;
         [SerializeField] private Transform _playerSpawnPoint;
@@ -22,7 +22,7 @@ namespace Logic.Services
         private WaitForSeconds _interval;
         private bool _isSpawning;
 
-        public void Init()
+        public override void Init()
         {
             _playerSpaceshipFactory = new RandomSpaceshipFactory<InvulnerableArmedStandingSpaceship>(_data.PlayerSpaceships, transform);
             _enemiesSpaceshipFactory = new RandomSpaceshipFactory<VulnerableUnarmedMovingSpaceship>(_data.EnemySpaceships, transform);
@@ -30,7 +30,7 @@ namespace Logic.Services
             _interval = new WaitForSeconds(_data.SpawnInterval);
         }
 
-        public InvulnerableArmedStandingSpaceship CreatePlayer()
+        public override InvulnerableArmedStandingSpaceship CreatePlayer()
         {
             if (!_player)
             {
@@ -41,7 +41,7 @@ namespace Logic.Services
             return _player;
         }
 
-        public void SetSpawnStatus(bool status)
+        public override void SetSpawnStatus(bool status)
         {
             _isSpawning = status;
 
