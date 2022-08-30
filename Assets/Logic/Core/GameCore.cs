@@ -7,16 +7,17 @@ namespace Logic.Core
 {
     public class GameCore : MonoBehaviour
     {
-        [SerializeField] private BattleBuilder _battleBuilder;
+        [SerializeField] private BaseBattleBuilder _battleBuilder;
         [SerializeField] private CameraManager _cameraManager;
+        [SerializeField] private GameplayInterface _gameplayInterface;
         [SerializeField] private ClueView _clueView;
         
-        private InvulnerableArmedStandingSpaceship _player;
+        private Spaceship _player;
         private bool _gameIsStarted;
 
         private void Awake()
         {
-            _battleBuilder.Init();
+            _battleBuilder.InputHandler = _gameplayInterface.InputHandler;
             _player = _battleBuilder.CreatePlayer();
             
             _cameraManager.Init(_player.transform, _player.Camera);
@@ -25,13 +26,18 @@ namespace Logic.Core
             _clueView.SetStatus(true);
             _clueView.SetScalingStatus(true);
             _clueView.SetText("Click on the spaceship to start the game");
+            _gameplayInterface.gameObject.SetActive(false);
             
-            _player.OnClick += StartGame;
+            _player.TouchAgent.OnTouch += StartGame;
+            _gameplayInterface.NextWeaponButton.onClick.AddListener(_player.NextWeapon);
+            _gameplayInterface.PreviousWeaponButton.onClick.AddListener(_player.NextWeapon);
         }
 
         private void OnDestroy()
         {
-            _player.OnClick -= StartGame;
+            _player.TouchAgent.OnTouch -= StartGame;
+            _gameplayInterface.NextWeaponButton.onClick.RemoveListener(_player.NextWeapon);
+            _gameplayInterface.PreviousWeaponButton.onClick.RemoveListener(_player.NextWeapon);
         }
 
         public void StartGame()
@@ -40,11 +46,11 @@ namespace Logic.Core
             {
                 return;
             }
-
-            _player.Init();
-            _battleBuilder.SetSpawnStatus(true);
+            
+            _battleBuilder.StartBattle();
             _cameraManager.ShowBattle();
             _clueView.SetStatus(false);
+            _gameplayInterface.gameObject.SetActive(true);
             _gameIsStarted = true;
         }
     }

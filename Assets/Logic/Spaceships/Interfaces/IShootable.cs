@@ -1,10 +1,9 @@
 using Logic.Spaceships.Services;
-using UnityEngine;
 
 namespace Logic.Spaceships.Interfaces
 {
     public interface IShootable
     {
-        public void Shoot(BaseWeaponHolder weaponHolder, Ray ray);
+        public void Shoot(Spaceship spaceship, BaseWeaponHolder weaponHolder);
     }
 }

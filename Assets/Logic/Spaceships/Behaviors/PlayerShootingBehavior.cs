@@ -6,14 +6,19 @@ namespace Logic.Spaceships.Behaviors
 {
     public class PlayerShootingBehavior : IShootable
     {
-        private const float MAX_RAY_DISTANCE = 5000;
-
-        public void Shoot(BaseWeaponHolder weaponHolder, Ray ray)
+        private InputHandler _inputHandler;
+        
+        public PlayerShootingBehavior(InputHandler inputHandler)
         {
-            var targetPosition = Physics.Raycast(ray, out RaycastHit hit)
-                ? hit.point
-                : Camera.main.transform.position + ray.direction * MAX_RAY_DISTANCE;
-            weaponHolder.Shoot(targetPosition);
+            _inputHandler = inputHandler;
+        }
+        
+        public void Shoot(Spaceship spaceship, BaseWeaponHolder weaponHolder)
+        {
+            if (_inputHandler.InputData.HasInput)
+            {
+                weaponHolder.Shoot(_inputHandler.InputData.Point);
+            }
         }
     }
 }

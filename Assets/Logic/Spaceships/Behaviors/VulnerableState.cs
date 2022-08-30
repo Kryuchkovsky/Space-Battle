@@ -1,4 +1,3 @@
-using System;
 using Logic.Spaceships.Interfaces;
 using UnityEngine;
 
@@ -6,30 +5,13 @@ namespace Logic.Spaceships.Behaviors
 {
     public class VulnerableState : IDamageable
     {
-        public event Action OnDestroy;
-
-        private bool _isDestroyed;
-        
-        public float DurabilityPoints { get; private set; }
-
-        public VulnerableState(float durabilityPoints)
+        public void TakeDamage(Spaceship spaceship, float damage)
         {
-            DurabilityPoints = durabilityPoints;
-        }
+            spaceship.CurrentDurability = Mathf.Clamp(spaceship.CurrentDurability - damage, 0, spaceship.CurrentDurability);
 
-        public void TakeDamage(float damage)
-        {
-            if (_isDestroyed)
+            if (spaceship.CurrentDurability == 0)
             {
-                return;
-            }
-            
-            DurabilityPoints = Mathf.Clamp(DurabilityPoints - damage, 0, DurabilityPoints);
-            _isDestroyed = DurabilityPoints == 0;
-            
-            if (_isDestroyed)
-            {
-                OnDestroy?.Invoke();
+                spaceship.InvokeDestruction();
             }
         }
     }

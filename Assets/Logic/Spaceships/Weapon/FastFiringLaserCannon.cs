@@ -22,12 +22,12 @@ namespace Logic.Spaceships.Weapon
 
         public override void Shoot(Vector3 endPoint)
         {
-            if (_canShoot)
+            if (IsReady)
             {
                 var rotation = Quaternion.LookRotation(endPoint - _shotPoint.position);
                 var charge = _blasterChargePool.Take(_shotPoint.position, rotation);
-                charge.Damage = _damage;
-                charge.RangeOfFlight = _firingRange;
+                charge.transform.parent = null;
+                charge.Init(DamageAgent, FiringRange, _damage);
                 charge.OnDestruction += ReturnCharge;
                 StartCoroutine(Reload());
             }
@@ -43,9 +43,9 @@ namespace Logic.Spaceships.Weapon
 
         private IEnumerator Reload()
         {
-            _canShoot = false;
+            IsReady = false;
             yield return _reload;
-            _canShoot = true;
+            IsReady = true;
         }
     }
 }

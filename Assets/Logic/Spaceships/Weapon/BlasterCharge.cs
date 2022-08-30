@@ -10,15 +10,18 @@ namespace Logic.Spaceships.Weapon
         
         [SerializeField] private TrailRenderer _trail;
         [SerializeField] [Min(0)] private float _speed = 100;
-        
-        private float _traveledDistance;
-        private bool _isDestroyed;
-        
-        public float Damage { get; set; }
-        public float RangeOfFlight { get; set; }
 
-        private void OnEnable()
+        private DamageAgent _damageAgent;
+        private float _traveledDistance;
+        private float _distance;
+        private float _damage;
+        private bool _isDestroyed;
+
+        public void Init(DamageAgent damageAgent, float distance, float damage)
         {
+            _damageAgent = damageAgent;
+            _distance = distance;
+            _damage = damage;
             _traveledDistance = 0;
             _isDestroyed = false;
         }
@@ -39,7 +42,7 @@ namespace Logic.Spaceships.Weapon
             transform.position += step;
             _traveledDistance += step.magnitude;
 
-            if (_traveledDistance >= RangeOfFlight)
+            if (_traveledDistance >= _distance)
             {
                 PrepareToBeDestroyed();
             }
@@ -54,9 +57,9 @@ namespace Logic.Spaceships.Weapon
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out DamageAgent agent))
+            if (other.TryGetComponent(out DamageAgent agent) && _damageAgent != agent)
             {
-                agent.TakeDamage(Damage);
+                agent.TakeDamage(_damage);
                 PrepareToBeDestroyed();
             }
         }
