@@ -1,36 +1,19 @@
 using Logic.Spaceships.Behaviors;
-using Logic.Spaceships.Services;
 using UnityEngine;
 
 namespace Logic.Spaceships
 {
     public class VulnerableUnarmedMovingSpaceship : Spaceship
     {
-        [SerializeField] private DamageAgent _damageAgent;
-        [SerializeField] [Min(0)] private float _durabilityPoints;
-
         private Vector3 _startPosition;
         private float _destructionDistance;
         private bool _distanceDestructionIsEnabled;
         
         public float Speed { get; set; } = 100;
 
-        private void Awake()
+        protected void Update()
         {
-            InitBehaviors();
-            _damageable.OnDestroy += InvokeDestruction;
-            _damageAgent.OnDamageTake += _damageable.TakeDamage;
-        }
-
-        private void OnDestroy()
-        {
-            _damageable.OnDestroy -= InvokeDestruction;
-            _damageAgent.OnDamageTake -= _damageable.TakeDamage;
-        }
-
-        private void Update()
-        {
-            _moveable.Move(this);
+            base.Update();
 
             if (_distanceDestructionIsEnabled && (transform.position - _startPosition).magnitude >= _destructionDistance)
             {
@@ -38,11 +21,12 @@ namespace Logic.Spaceships
             }
         }
 
-        protected override void InitBehaviors()
+        public override void InitBehaviors()
         {
             _damageable = new VulnerableState(_durabilityPoints);
             _moveable = new MovingForwardBehavior(Speed);
             _shootable = new DisabledShootingBehavior();
+            Init();
         }
 
         public void SetDestructionDistance(float distance)

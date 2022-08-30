@@ -6,7 +6,7 @@ namespace Logic.Services
     public abstract class BaseBattleBuilder : MonoBehaviour
     {
         public abstract void Init();
-        public abstract InvulnerableArmedStandingSpaceship CreatePlayer();
-        public abstract void SetSpawnStatus(bool status);
+        public abstract Spaceship CreatePlayer();
+        public abstract void StartBattle();
     }
 }

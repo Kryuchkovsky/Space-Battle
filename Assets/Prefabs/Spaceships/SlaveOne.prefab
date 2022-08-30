@@ -281,7 +281,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.811749, y: 1}
+    m_SensorSize: {x: 1.0413885, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2121,11 +2121,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca5493df8214184c887774d58e38de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 1125886384}
   _meshRenderer: {fileID: 1545487700801256300}
+  _damageAgent: {fileID: 5477770276038989489}
   _weaponHolders:
   - {fileID: 2800431149550473048}
   - {fileID: 1384527208025050174}
-  _camera: {fileID: 1125886384}
   _inputHandler: {fileID: 6840833056795521708}
   _interface: {fileID: 3678996841583349549}
 --- !u!114 &1384527208025050174

@@ -2066,12 +2066,12 @@ GameObject:
   m_Component:
   - component: {fileID: 818360390476896005}
   - component: {fileID: 229076672}
-  - component: {fileID: -6132267794863343185}
+  - component: {fileID: 8246798058630073087}
   - component: {fileID: 1384527208025050174}
   - component: {fileID: 2800431149550473048}
-  - component: {fileID: 4286874982725792400}
+  - component: {fileID: 5477770276038989489}
   m_Layer: 0
-  m_Name: SlaveOneEnemy
+  m_Name: SlaveOnePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2092,6 +2092,7 @@ Transform:
   - {fileID: 3312026388572839159}
   - {fileID: 1125886383}
   - {fileID: 785052265}
+  - {fileID: 7871020421457598241}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2108,7 +2109,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 50, z: 15}
   m_Center: {x: 0, y: -10, z: 5}
---- !u!114 &-6132267794863343185
+--- !u!114 &8246798058630073087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2117,16 +2118,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 6086866631339856142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3b527be14c41ca97af31a2f98c8e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 205888a5f2cc478b99ec52eccdea16d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 1125886384}
   _meshRenderer: {fileID: 1545487700801256300}
-  _damageAgent: {fileID: 4286874982725792400}
+  _damageAgent: {fileID: 5477770276038989489}
   _weaponHolders:
   - {fileID: 2800431149550473048}
   - {fileID: 1384527208025050174}
-  _durabilityPoints: 500
+  _inputHandler: {fileID: 6840833056795521708}
+  _interface: {fileID: 3678996841583349549}
 --- !u!114 &1384527208025050174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2157,7 +2159,7 @@ MonoBehaviour:
   _weapons:
   - {fileID: 179294644}
   - {fileID: 796193286}
---- !u!114 &4286874982725792400
+--- !u!114 &5477770276038989489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2710,3 +2712,178 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &7231072241934906609
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 818360390476896005}
+    m_Modifications:
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4222764868850438315, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_Name
+      value: SpaceshipCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157064193604964729, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8246798058630073087}
+    - target: {fileID: 5157064193604964729, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157064193604964729, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Logic.Spaceships.InvulnerableArmedPursuingPlayerSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052063455338451314, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8246798058630073087}
+    - target: {fileID: 7052063455338451314, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PreviousWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7052063455338451314, guid: 5a434cfd45038304bb145ae40cfa1f64,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Logic.Spaceships.InvulnerableArmedPursuingPlayerSpaceship, Assembly-CSharp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a434cfd45038304bb145ae40cfa1f64, type: 3}
+--- !u!223 &3678996841583349549 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6293641694997625820, guid: 5a434cfd45038304bb145ae40cfa1f64,
+    type: 3}
+  m_PrefabInstance: {fileID: 7231072241934906609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6840833056795521708 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4230683867037320797, guid: 5a434cfd45038304bb145ae40cfa1f64,
+    type: 3}
+  m_PrefabInstance: {fileID: 7231072241934906609}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5fb8d204cfb7214da1328a4ea0d95ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &7871020421457598241 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 676268622173496272, guid: 5a434cfd45038304bb145ae40cfa1f64,
+    type: 3}
+  m_PrefabInstance: {fileID: 7231072241934906609}
+  m_PrefabAsset: {fileID: 0}

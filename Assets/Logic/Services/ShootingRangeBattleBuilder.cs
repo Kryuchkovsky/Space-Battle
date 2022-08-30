@@ -30,7 +30,7 @@ namespace Logic.Services
             _interval = new WaitForSeconds(_data.SpawnInterval);
         }
 
-        public override InvulnerableArmedStandingSpaceship CreatePlayer()
+        public override Spaceship CreatePlayer()
         {
             if (!_player)
             {
@@ -41,19 +41,14 @@ namespace Logic.Services
             return _player;
         }
 
-        public override void SetSpawnStatus(bool status)
+        public override void StartBattle()
         {
-            _isSpawning = status;
-
-            if (_isSpawning)
-            {
-                StartCoroutine(StartCreatingEnemies());
-            }
+            StartCoroutine(StartCreatingEnemies());
         }
 
         private IEnumerator StartCreatingEnemies()
         {
-            while (_isSpawning)
+            while (true)
             {
                 var position = _enemySpawnPoint.position + new Vector3(
                     Random.Range(-_data.MaxSpawnRange, _data.MaxSpawnRange),

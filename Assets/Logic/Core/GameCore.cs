@@ -11,7 +11,7 @@ namespace Logic.Core
         [SerializeField] private CameraManager _cameraManager;
         [SerializeField] private ClueView _clueView;
         
-        private InvulnerableArmedStandingSpaceship _player;
+        private Spaceship _player;
         private bool _gameIsStarted;
 
         private void Awake()
@@ -40,9 +40,8 @@ namespace Logic.Core
             {
                 return;
             }
-
-            _player.Init();
-            _battleBuilder.SetSpawnStatus(true);
+            
+            _battleBuilder.StartBattle();
             _cameraManager.ShowBattle();
             _clueView.SetStatus(false);
             _gameIsStarted = true;

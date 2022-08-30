@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097692148578142486}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1800, y: 0, z: 1500}
+  m_LocalPosition: {x: 0, y: 300, z: 300}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,6 +98,8 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 2013576ec0ad7a8459fb245555c59c85, type: 2}
   _playerSpawnPoint: {fileID: 2097692149629109139}
   _enemySpawnPoint: {fileID: 2097692148578142487}
+  _playerPrefab: {fileID: 8246798058630073087, guid: 858ce34d1e6998141a5278fe425c40c5,
+    type: 3}
   _enemyPrefab: {fileID: -6132267794863343185, guid: 460ccfa9954abe849b228f28bd4b95e6,
     type: 3}
 --- !u!114 &1549405669547161455
@@ -206,7 +208,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7084079, y: 1}
+    m_SensorSize: {x: 0.8192935, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

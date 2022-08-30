@@ -9,6 +9,7 @@ namespace Logic.Spaceships.Behaviors
     {
         private Vector2 _randomDirection;
         private Vector3 _up;
+        private Quaternion _rotation;
         private float _movementSpeed = 200;
         private float _rotationSpeed = 60;
         private float _minDistance = 200;
@@ -17,8 +18,13 @@ namespace Logic.Spaceships.Behaviors
 
         public void Move(Spaceship spaceship)
         {
-            Quaternion rotation;
             spaceship.transform.position += spaceship.transform.forward * _movementSpeed * Time.deltaTime;
+
+            if (!spaceship.Target)
+            {
+                return;
+            }
+            
             var direction = (spaceship.Target.position - spaceship.transform.position).normalized;
             var angle = Vector3.Angle(spaceship.transform.forward, direction);
             var distance = Vector3.Distance(spaceship.transform.position, spaceship.Target.position);
@@ -29,12 +35,12 @@ namespace Logic.Spaceships.Behaviors
                 var temp = spaceship.transform.up + spaceship.transform.right;
                 _up = new Vector3(Random.Range(-temp.x, temp.x), Random.Range(-temp.y, temp.y), Random.Range(-temp.z, temp.z));
                 var to = Quaternion.LookRotation(look);
-                rotation = Quaternion.RotateTowards(spaceship.transform.rotation, to, _rotationSpeed * Time.deltaTime);
+                _rotation = Quaternion.RotateTowards(spaceship.transform.rotation, to, _rotationSpeed * Time.deltaTime);
                 _isGoindAway = false;
             }
             else
             {
-                rotation = Quaternion.RotateTowards(spaceship.transform.rotation, Quaternion.LookRotation(direction, _up), _rotationSpeed * Time.deltaTime);
+                _rotation = Quaternion.RotateTowards(spaceship.transform.rotation, Quaternion.LookRotation(direction, _up), _rotationSpeed * Time.deltaTime);
 
                 if (!_isGoindAway)
                 {
@@ -44,7 +50,7 @@ namespace Logic.Spaceships.Behaviors
                 
             }
 
-            spaceship.transform.rotation = rotation;
+            spaceship.transform.rotation = _rotation;
         }
     }
 }

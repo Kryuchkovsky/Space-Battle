@@ -5,12 +5,11 @@ using UnityEngine;
 
 namespace Logic.Spaceships
 {
-    public class InvulnerableArmedPursuingPlayerSpaceship: Spaceship
+    public class VulnerableArmedPursuingPlayerSpaceship: Spaceship
     {
-        [SerializeField] private List<BaseWeaponHolder> _weaponHolders;
         [SerializeField] private InputHandler _inputHandler;
         [SerializeField] private Canvas _interface;
-        
+
         private int _weaponHolderIndex;
 
         protected void Awake()
@@ -25,17 +24,9 @@ namespace Logic.Spaceships
             _inputHandler.OnInput -= Shoot;
         }
 
-        private void Update()
-        {
-            if (Target)
-            {
-                _moveable.Move(this);
-            }
-        }
-
         public override void InitBehaviors()
         {
-            _damageable = new InvulnerableState();
+            _damageable = new VulnerableState(_durabilityPoints);
             _moveable = new PursuingBehavior();
             _shootable = new PlayerShootingBehavior();
             _interface.enabled = true;
