@@ -6,7 +6,7 @@ namespace Logic.Spaceships.Behaviors
 {
     public class PlayerShootingBehavior : IShootable
     {
-        private InputHandler _inputHandler;
+        private readonly InputHandler _inputHandler;
         
         public PlayerShootingBehavior(InputHandler inputHandler)
         {

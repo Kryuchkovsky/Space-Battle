@@ -446,6 +446,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1969993865934989383}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &999662153 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2097692149629109139, guid: f71e76a2fd37bfb49bcc029f07e64f54,
+    type: 3}
+  m_PrefabInstance: {fileID: 2097692148077485860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1041813753 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8366164006477224438, guid: 313b72c670567ce4f90229468b3f81c3,
@@ -464,6 +470,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a2f43c0f4d4aa4790d04db64b351eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1397356524 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2097692148578142487, guid: f71e76a2fd37bfb49bcc029f07e64f54,
+    type: 3}
+  m_PrefabInstance: {fileID: 2097692148077485860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2018268185
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +857,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7764090229449292915, guid: f71e76a2fd37bfb49bcc029f07e64f54,
+        type: 3}
+      propertyPath: _enemySpawnPoint
+      value: 
+      objectReference: {fileID: 1397356524}
+    - target: {fileID: 7764090229449292915, guid: f71e76a2fd37bfb49bcc029f07e64f54,
+        type: 3}
+      propertyPath: _playerSpawnPoint
+      value: 
+      objectReference: {fileID: 999662153}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f71e76a2fd37bfb49bcc029f07e64f54, type: 3}

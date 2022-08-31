@@ -8,7 +8,7 @@ namespace Logic.Services
     public abstract class BaseBattleBuilder : MonoBehaviour
     {
         [SerializeField] protected LevelData _data;
-        [SerializeField] protected LayerMask _enemyMask;
+        [SerializeField] [Range(0, 31)] protected int _enemyLayerIndex;
 
         public InputHandler InputHandler { get; set; }
         

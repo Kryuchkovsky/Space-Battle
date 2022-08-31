@@ -34,7 +34,7 @@ namespace Logic.Services
         {
             _enemy = _spaceshipFactory.Create(_enemySpawnPoint.position, Quaternion.LookRotation(_player.transform.forward));
             _enemy.Init(new VulnerableState(), new PursuingBehavior(_enemy), new BotShootingBehavior());
-            _enemy.gameObject.layer = _enemyMask;
+            _enemy.TouchAgent.gameObject.layer = _enemyLayerIndex;
             _enemy.Target = _player;
             _player.Init(new VulnerableState(), new PursuingBehavior(_player), new PlayerShootingBehavior(InputHandler));
             _player.Target = _enemy;
