@@ -26,7 +26,7 @@ namespace Logic.Services
             _chargePool = new ObjectPool<BlasterCharge>(_chargePrefab, transform);
         }
 
-        public BlasterCharge CreateEffectByType(Vector3 position, Quaternion rotation)
+        public BlasterCharge Create(Vector3 position, Quaternion rotation)
         {
             var charge = _chargePool.Take(position, rotation);
             charge.Callback += _chargePool.Return;

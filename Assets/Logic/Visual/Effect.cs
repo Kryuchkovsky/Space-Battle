@@ -6,10 +6,11 @@ namespace Logic.Visual
 {
     public class Effect : MonoBehaviour
     {
+        public event Action<Effect> Callback;
+        
         [SerializeField] private ParticleSystem _particleSystem;
         [SerializeField] private EffectType _type;
-        
-        public Action<Effect> Callback { get; set; }
+
         public EffectType Type => _type;
         
         private void Awake()

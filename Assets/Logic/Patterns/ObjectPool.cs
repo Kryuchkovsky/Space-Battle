@@ -19,8 +19,9 @@ namespace Logic.Patterns
 
         public T Take(Vector3 position = new Vector3(), Quaternion rotation = new Quaternion())
         {
-            T obj = _objects.Count == 0 ? Object.Instantiate(Prefab, _parent) : _objects.Pop();
+            T obj = _objects.Count == 0 ? Object.Instantiate(Prefab) : _objects.Pop();
             obj.gameObject.SetActive(true);
+            obj.transform.parent = _parent;
             obj.transform.position = position;
             obj.transform.rotation = rotation;
 
@@ -31,9 +32,6 @@ namespace Logic.Patterns
         {
             _objects.Push(obj);
             obj.gameObject.SetActive(false);
-            obj.transform.parent = _parent;
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localRotation = Quaternion.identity;
         }
     }
 }
