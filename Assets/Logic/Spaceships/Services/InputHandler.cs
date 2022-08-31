@@ -18,7 +18,7 @@ namespace Logic.Spaceships.Services
             if (_hasInput)
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                _point = Physics.Raycast(ray, out RaycastHit hit, _mask)
+                _point = Physics.Raycast(ray, out RaycastHit hit, FiringRange, _mask)
                     ? hit.point
                     : Camera.main.transform.position + ray.direction * FiringRange;
             }

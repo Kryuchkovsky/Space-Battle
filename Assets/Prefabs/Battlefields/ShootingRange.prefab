@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8688784, y: 1}
+    m_SensorSize: {x: 0.70983607, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -312,7 +312,7 @@ Transform:
   - {fileID: 1667562037342218805}
   - {fileID: 3104160290573043043}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5077138590608332183
 MonoBehaviour:
@@ -343,6 +343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 2013576ec0ad7a8459fb245555c59c85, type: 2}
+  _playerLayerIndex: 7
+  _enemyLayerIndex: 6
   _playerSpawnPoint: {fileID: 5077138589331513769}
   _enemySpawnPoint: {fileID: 5077138590369901357}
   _distanceDestructor: {fileID: 5166271819298089521}

@@ -37,6 +37,7 @@ namespace Logic.Services
             _enemy.TouchAgent.gameObject.layer = _enemyLayerIndex;
             _enemy.Target = _player;
             _player.Init(new VulnerableState(), new PursuingBehavior(_player), new PlayerShootingBehavior(InputHandler));
+            _player.TouchAgent.gameObject.layer = _playerLayerIndex;
             _player.Target = _enemy;
         }
     }

@@ -52,6 +52,7 @@ MonoBehaviour:
   _touchAgent: {fileID: 8185665824982463752}
   _durabilityPoints: 500
   _movementSpeed: 120
+  _rotationSpeed: 60
 --- !u!1 &6277043461844070746
 GameObject:
   m_ObjectHideFlags: 0

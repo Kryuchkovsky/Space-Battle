@@ -34,6 +34,7 @@ namespace Logic.Services
             {
                 var rotation = Quaternion.LookRotation(_playerSpawnPoint.forward);
                 _player = _spaceshipFactory.Create(_playerSpawnPoint.position, rotation);
+                _player.TouchAgent.gameObject.layer = _playerLayerIndex;
                 _player.Init(new InvulnerableState(), new DisabledMovingBehavior(), new PlayerShootingBehavior(InputHandler));
             }
 
@@ -65,7 +66,7 @@ namespace Logic.Services
                 else
                 {
                     var enemy = _enemy;
-                    enemy.gameObject.layer = _enemyLayerIndex;
+                    enemy.TouchAgent.gameObject.layer = _enemyLayerIndex;
                     enemy.Init(new VulnerableState(), new MovingForwardBehavior(), new DisabledShootingBehavior());
                     enemy.transform.position = position;
                     _distanceDestructor.AddSpaceship(enemy);

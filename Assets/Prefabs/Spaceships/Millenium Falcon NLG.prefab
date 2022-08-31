@@ -190,7 +190,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6113744, y: 1}
+    m_SensorSize: {x: 0.70983607, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -584,7 +584,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6113744, y: 1}
+    m_SensorSize: {x: 0.70983607, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -689,7 +689,7 @@ GameObject:
   - component: {fileID: 1759276511667904937}
   - component: {fileID: 351654659040289707}
   - component: {fileID: 4390989387880053445}
-  - component: {fileID: 9076281334441455549}
+  - component: {fileID: 2911114885479118958}
   m_Layer: 0
   m_Name: Mesh_0067
   m_TagString: Untagged
@@ -793,19 +793,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09970f80f23d3b543a39e132d14c32db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &9076281334441455549
-BoxCollider:
+--- !u!64 &2911114885479118958
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4096788768214168132}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25.039062, y: 33.812508, z: 1.8}
-  m_Center: {x: 0.07421875, y: -3.593751, z: 0.31542906}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3648045608342708612, guid: 910206b669ee6a047a929849d9e0bf08, type: 3}
 --- !u!1 &4981368667426713066
 GameObject:
   m_ObjectHideFlags: 0

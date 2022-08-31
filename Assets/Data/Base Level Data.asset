@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Base Level Data
   m_EditorClassIdentifier: 
   _spaceships:
+  - {fileID: 8801066634130986007, guid: c23d4ad62be56444a9710ff46d26425b, type: 3}
   - {fileID: 229076671, guid: f426faabebf5cdf40afa88d3fc64d6a8, type: 3}
   _unfinishedSpaceships:
   - {fileID: 5681583905043568723, guid: 608bb5cf5593f4244b5a88512337d6b7, type: 3}
