@@ -5,7 +5,9 @@ namespace Logic.Spaceships.Services
 {
     public class InputHandler : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
-        private Vector3 Point;
+        [SerializeField] private LayerMask _mask;
+        
+        private Vector3 _point;
         private bool _hasInput;
 
         public InputData InputData { get; private set; }
@@ -16,12 +18,12 @@ namespace Logic.Spaceships.Services
             if (_hasInput)
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Point = Physics.Raycast(ray, out RaycastHit hit)
+                _point = Physics.Raycast(ray, out RaycastHit hit, _mask)
                     ? hit.point
                     : Camera.main.transform.position + ray.direction * FiringRange;
             }
             
-            InputData = new InputData(Point, _hasInput);
+            InputData = new InputData(_point, _hasInput);
         }
         
         public void OnPointerDown(PointerEventData eventData) => _hasInput = true;

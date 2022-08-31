@@ -106,7 +106,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 910206b669ee6a047a929849d9e0bf08, type: 3}
+  - {fileID: 2100000, guid: ba11ce83997108a44a1343226db8d7d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8688784, y: 1}
+    m_SensorSize: {x: 1.6113744, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -438,6 +438,7 @@ MonoBehaviour:
   - {fileID: 1875176626323726800}
   - {fileID: 5471150139569000414}
   _chargeSpeed: 1500
+  _scatterFactor: 0.01
 --- !u!1 &3121813040637716147
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +584,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8688784, y: 1}
+    m_SensorSize: {x: 1.6113744, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1250,7 +1251,7 @@ MonoBehaviour:
   _touchAgent: {fileID: 4390989387880053445}
   _durabilityPoints: 2000
   _movementSpeed: 200
-  _rotationSpeed: 50
+  _rotationSpeed: 60
 --- !u!1 &8269537958099982741
 GameObject:
   m_ObjectHideFlags: 0

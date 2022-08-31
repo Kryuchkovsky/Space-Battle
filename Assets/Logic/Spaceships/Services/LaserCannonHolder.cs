@@ -9,6 +9,7 @@ namespace Logic.Spaceships.Services
     {
         [SerializeField] private List<FastFiringLaserCannon> _weapons;
         [SerializeField] [Min(0)] private float _chargeSpeed = 1500;
+        [SerializeField] private float _scatterFactor = 0.01f;
 
         private WaitForSeconds _weaponSwitching;
         private int _weaponIndex;
@@ -39,7 +40,7 @@ namespace Logic.Spaceships.Services
             return target.position + step + target.forward * targetSpeed * time;
         }
 
-        public override void Shoot(Vector3 targetPosition)
+        public override void Shoot(Vector3 point)
         {
             var weapon = _weapons[_weaponIndex];
             
@@ -48,9 +49,11 @@ namespace Logic.Spaceships.Services
                 return;
             }
             
-            if (weapon.CanHit(targetPosition))
+            if (weapon.CanHit(point))
             {
-                weapon.Shoot(targetPosition);
+                var offset = (point - transform.position).magnitude * _scatterFactor;
+                var scatter = transform.forward * Random.Range(-offset, offset) + transform.right * Random.Range(-offset, offset);
+                weapon.Shoot(point + scatter);
                 
                 if (_weapons[_weaponIndex].ReloadTime > 0)
                 {

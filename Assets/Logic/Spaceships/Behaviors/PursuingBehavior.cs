@@ -8,7 +8,8 @@ namespace Logic.Spaceships.Behaviors
     {
         private const float MAX_AXIAL_OFFSET = 0.5f;
         private const float MAX_DISTANCE_FACTOR = 6;
-        private const float MIN_ANGLE_FOR_GOING_AWAY = 30;
+        private const float MIN_ANGLE_FOR_GOING_AWAY = 150;
+        private const float ROTATION_FACTOR = 5;
 
         private readonly float _minDistance;
         private readonly float _maxDistance;
@@ -36,9 +37,11 @@ namespace Logic.Spaceships.Behaviors
             var direction = (spaceship.Target.transform.position - spaceship.transform.position).normalized;
             var angle = Vector3.Angle(spaceship.transform.forward, direction);
             var distance = Vector3.Distance(spaceship.transform.position, spaceship.Target.transform.position);
+            var hasSampleDirection = spaceship.transform.forward == spaceship.Target.transform.forward;
 
-            if (distance < _minDistance || distance < _maxDistance && angle > MIN_ANGLE_FOR_GOING_AWAY)
+            if (distance < _minDistance || distance < _maxDistance && angle > spaceship.RotationSpeed && angle < MIN_ANGLE_FOR_GOING_AWAY)
             {
+                Debug.Log(angle);
                 var forward = -direction + spaceship.transform.forward * _randomDirection.x + spaceship.transform.right * _randomDirection.y;
                 var offset = spaceship.transform.up + spaceship.transform.right;
                 _up = new Vector3(Random.Range(-offset.x, offset.x), Random.Range(-offset.y, offset.y), Random.Range(-offset.z, offset.z));
@@ -57,7 +60,7 @@ namespace Logic.Spaceships.Behaviors
             }
 
             _rotation = Quaternion.RotateTowards(spaceship.transform.rotation, _rotation, spaceship.RotationSpeed * Time.deltaTime);
-            spaceship.transform.rotation = _rotation;
+            spaceship.transform.rotation = Quaternion.Lerp(spaceship.transform.rotation, _rotation, Time.deltaTime * ROTATION_FACTOR);
         }
     }
 }

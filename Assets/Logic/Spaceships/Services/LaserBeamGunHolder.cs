@@ -21,13 +21,13 @@ namespace Logic.Spaceships.Services
 
         public override Vector3 CalculateFiringDirection(Transform target, float targetSpeed) => target.position;
 
-        public override void Shoot(Vector3 targetPosition)
+        public override void Shoot(Vector3 point)
         {
             foreach (var weapon in _weapons)
             {
                 if (weapon.IsReady)
                 {
-                    weapon.Shoot(targetPosition);
+                    weapon.Shoot(point);
                 }
             }
         }

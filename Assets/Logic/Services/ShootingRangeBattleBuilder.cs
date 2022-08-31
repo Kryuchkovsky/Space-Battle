@@ -65,6 +65,7 @@ namespace Logic.Services
                 else
                 {
                     var enemy = _enemy;
+                    enemy.gameObject.layer = _enemyMask;
                     enemy.Init(new VulnerableState(), new MovingForwardBehavior(), new DisabledShootingBehavior());
                     enemy.transform.position = position;
                     _distanceDestructor.AddSpaceship(enemy);

@@ -19,7 +19,8 @@ namespace Logic.Spaceships.Behaviors
             
             if (weaponHolder.IsTurret || angle < MIN_ANGLE)
             {
-                weaponHolder.Shoot(spaceship.Target.transform.position);
+                var point = weaponHolder.CalculateFiringDirection(spaceship.Target.transform, spaceship.Target.MovementSpeed);
+                weaponHolder.Shoot(point);
             }
         }
     }

@@ -14,7 +14,7 @@ namespace Logic.Spaceships.Services
         public bool IsTurret => _isTurret;
         
         public abstract void Init(DamageAgent damageAgent);
-        public abstract void Shoot(Vector3 targetPosition);
+        public abstract void Shoot(Vector3 point);
 
         public abstract Vector3 CalculateFiringDirection(Transform target, float targetSpeed);
     }
