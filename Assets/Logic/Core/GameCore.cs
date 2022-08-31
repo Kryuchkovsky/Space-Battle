@@ -29,6 +29,8 @@ namespace Logic.Core
             _gameplayInterface.gameObject.SetActive(false);
             
             _player.TouchAgent.OnTouch += StartGame;
+            _gameplayInterface.NextWeaponButton.gameObject.SetActive(_player.HasVariousWeapons);
+            _gameplayInterface.PreviousWeaponButton.gameObject.SetActive(_player.HasVariousWeapons);
             _gameplayInterface.NextWeaponButton.onClick.AddListener(_player.NextWeapon);
             _gameplayInterface.PreviousWeaponButton.onClick.AddListener(_player.NextWeapon);
         }

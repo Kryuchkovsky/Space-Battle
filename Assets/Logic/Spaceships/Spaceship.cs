@@ -33,6 +33,7 @@ namespace Logic.Spaceships
         public float MovementSpeed => _movementSpeed;
         public float RotationSpeed => _rotationSpeed;
         public float CurrentDurability { get; set; }
+        public bool HasVariousWeapons => _weaponHolders.Count > 1;
 
         public void Init(IDamageable damageable, IMoveable moveable, IShootable shootable)
         {
