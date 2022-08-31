@@ -26,7 +26,7 @@ namespace Logic.Spaceships
         private IShootable _shootable;
         private int _weaponHolderIndex;
 
-        public Transform Target { get; set; }
+        public Spaceship Target { get; set; }
         public TouchAgent TouchAgent => _touchAgent;
         public CinemachineVirtualCamera Camera => _camera;
         public Vector3 Size => _meshRenderer.bounds.size;

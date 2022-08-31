@@ -33,9 +33,9 @@ namespace Logic.Spaceships.Behaviors
                 return;
             }
             
-            var direction = (spaceship.Target.position - spaceship.transform.position).normalized;
+            var direction = (spaceship.Target.transform.position - spaceship.transform.position).normalized;
             var angle = Vector3.Angle(spaceship.transform.forward, direction);
-            var distance = Vector3.Distance(spaceship.transform.position, spaceship.Target.position);
+            var distance = Vector3.Distance(spaceship.transform.position, spaceship.Target.transform.position);
 
             if (distance < _minDistance || distance < _maxDistance && angle > MIN_ANGLE_FOR_GOING_AWAY)
             {

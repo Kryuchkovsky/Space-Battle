@@ -7,16 +7,16 @@ namespace Logic.Spaceships.Weapon
     public abstract class BaseWeapon : MonoBehaviour
     {
         [SerializeField] protected Transform _shotPoint;
-        [SerializeField] [Min(0)] protected float _damage = 50;
-        [SerializeField] [Min(0)] protected float _reloadTime = 0.25f;
-        
+
         protected EffectManager _effectManager = EffectManager.Instance;
 
         public DamageAgent DamageAgent { get; set; }
-        public float ReloadTime => _reloadTime;
+        public float Damage { get; set; } = 100;
+        public float ReloadTime { get; set; } = 0.25f;
         public float FiringRange { get; set; } = 10000;
         public bool IsReady { get; protected set; } = true;
         public abstract void Shoot(Vector3 endPoint);
+        
 
         public bool CanHit(Vector3 endPoint)
         {

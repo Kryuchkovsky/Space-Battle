@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 3045135714415804984}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &615346747566869596
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,8 +244,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 3071394457355225963}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &1847975938037964626
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,8 +372,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 3031984122676857677}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &2681281930544101857
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +424,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee084f2ced2f4070a930e6984454f071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _reloadTime: 1
+  _damage: 100
   _firingRange: 10000
   _isTurret: 1
   _weapons:
@@ -441,6 +437,7 @@ MonoBehaviour:
   - {fileID: 3666879113304455416}
   - {fileID: 1875176626323726800}
   - {fileID: 5471150139569000414}
+  _chargeSpeed: 1500
 --- !u!1 &3121813040637716147
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,8 +850,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 2847871324569450636}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &5693929171705769513
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,8 +978,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 1352568511832116398}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &6265872294649539435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,8 +1023,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 5509598729974333784}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &6781688493641146101
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,8 +1296,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 2961904898444732780}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &8543603894391806069
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,8 +1341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shotPoint: {fileID: 7183355887979122401}
-  _damage: 50
-  _reloadTime: 1
 --- !u!1 &8831920104542711525
 GameObject:
   m_ObjectHideFlags: 0

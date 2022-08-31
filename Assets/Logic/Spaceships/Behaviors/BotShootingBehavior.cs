@@ -15,11 +15,11 @@ namespace Logic.Spaceships.Behaviors
                 return;
             }
             
-            var angle = Vector3.Angle(spaceship.transform.forward, spaceship.Target.position - spaceship.transform.position);
+            var angle = Vector3.Angle(spaceship.transform.forward, spaceship.Target.transform.position - spaceship.transform.position);
             
             if (weaponHolder.IsTurret || angle < MIN_ANGLE)
             {
-                weaponHolder.Shoot(spaceship.Target.position);
+                weaponHolder.Shoot(spaceship.Target.transform.position);
             }
         }
     }

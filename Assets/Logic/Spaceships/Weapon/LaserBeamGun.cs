@@ -44,7 +44,7 @@ namespace Logic.Spaceships.Weapon
             {
                 if (hit.collider.TryGetComponent(out DamageAgent agent))
                 {
-                    agent.TakeDamage(_damage * Time.deltaTime);
+                    agent.TakeDamage(Damage * Time.deltaTime);
                 }
 
                 _hitEffect.transform.position = hit.point;

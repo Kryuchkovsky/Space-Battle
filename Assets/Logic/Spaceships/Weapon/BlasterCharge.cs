@@ -9,18 +9,19 @@ namespace Logic.Spaceships.Weapon
         public event Action<BlasterCharge> Callback;
         
         [SerializeField] private TrailRenderer _trail;
-        [SerializeField] [Min(0)] private float _speed = 100;
 
         private DamageAgent _damageAgent;
         private float _traveledDistance;
-        private float _distance;
-        private float _damage;
+        private float _distance = 10000;
+        private float _damage = 100;
+        private float _speed = 1500;
 
-        public void Init(DamageAgent damageAgent, float distance, float damage)
+        public void Init(DamageAgent damageAgent, float distance, float damage, float speed)
         {
             _damageAgent = damageAgent;
             _distance = distance;
             _damage = damage;
+            _speed = speed;
             _traveledDistance = 0;
         }
 

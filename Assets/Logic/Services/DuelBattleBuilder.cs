@@ -34,9 +34,9 @@ namespace Logic.Services
         {
             _enemy = _spaceshipFactory.Create(_enemySpawnPoint.position, Quaternion.LookRotation(_player.transform.forward));
             _enemy.Init(new VulnerableState(), new PursuingBehavior(_enemy), new BotShootingBehavior());
-            _enemy.Target = _player.transform;
+            _enemy.Target = _player;
             _player.Init(new VulnerableState(), new PursuingBehavior(_player), new PlayerShootingBehavior(InputHandler));
-            _player.Target = _enemy.transform;
+            _player.Target = _enemy;
         }
     }
 }

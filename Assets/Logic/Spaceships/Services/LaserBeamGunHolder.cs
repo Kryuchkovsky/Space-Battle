@@ -18,7 +18,9 @@ namespace Logic.Spaceships.Services
                 weapon.FiringRange = _firingRange;
             }
         }
-        
+
+        public override Vector3 CalculateFiringDirection(Transform target, float targetSpeed) => target.position;
+
         public override void Shoot(Vector3 targetPosition)
         {
             foreach (var weapon in _weapons)
