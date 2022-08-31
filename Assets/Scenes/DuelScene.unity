@@ -775,6 +775,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1956965825, guid: f71e76a2fd37bfb49bcc029f07e64f54, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956965825, guid: f71e76a2fd37bfb49bcc029f07e64f54, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956965825, guid: f71e76a2fd37bfb49bcc029f07e64f54, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2097692148893726627, guid: f71e76a2fd37bfb49bcc029f07e64f54,
         type: 3}
       propertyPath: m_Name
@@ -844,11 +856,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6587043597800755221, guid: f71e76a2fd37bfb49bcc029f07e64f54,
-        type: 3}
-      propertyPath: m_Lens.m_SensorSize.x
-      value: 1.8858521
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

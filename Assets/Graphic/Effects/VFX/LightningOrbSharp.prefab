@@ -19253,3 +19253,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particleSystem: {fileID: 198984355512589716}
+  _type: 1

@@ -2125,8 +2125,9 @@ MonoBehaviour:
   _meshRenderer: {fileID: 1545487700801256300}
   _damageAgent: {fileID: 5477770276038989489}
   _touchAgent: {fileID: 7923542135801640493}
-  _durabilityPoints: 500
-  _movementSpeed: 120
+  _durabilityPoints: 2000
+  _movementSpeed: 180
+  _rotationSpeed: 60
 --- !u!114 &2800431149550473048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,6 +2141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firingRange: 10000
+  _isTurret: 0
   _weapons:
   - {fileID: 179294644}
   - {fileID: 796193286}
@@ -2156,6 +2158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firingRange: 10000
+  _isTurret: 0
   _weapons:
   - {fileID: 1218688932}
   - {fileID: 1206685985}

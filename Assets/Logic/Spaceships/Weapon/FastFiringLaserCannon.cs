@@ -1,6 +1,6 @@
 using System.Collections;
+using Logic.Data;
 using Logic.Patterns;
-using Logic.Visual;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
@@ -10,14 +10,18 @@ namespace Logic.Spaceships.Weapon
         [SerializeField] private BlasterCharge _blasterCharge;
 
         private ObjectPool<BlasterCharge> _blasterChargePool;
-        private ObjectPool<Effect> _effectHitPool;
         private WaitForSeconds _reload;
+        private bool _isDestroyed;
 
         private void Awake()
         {
             _blasterChargePool = new ObjectPool<BlasterCharge>(_blasterCharge, transform);
-            _effectHitPool = new ObjectPool<Effect>(_hitEffectPrefab, transform);
             _reload = new WaitForSeconds(_reloadTime);
+        }
+
+        private void OnDestroy()
+        {
+            _isDestroyed = true;
         }
 
         public override void Shoot(Vector3 endPoint)
@@ -35,9 +39,17 @@ namespace Logic.Spaceships.Weapon
 
         private void ReturnCharge(BlasterCharge charge)
         {
-            var effect = _effectHitPool.Take(charge.transform.position);
-            effect.Callback += () => _effectHitPool.Return(effect);
-            _blasterChargePool.Return(charge);
+            _effectManager.CreateEffectByType(EffectType.Sparks, charge.transform.position, Quaternion.identity);
+
+            if (_isDestroyed)
+            {
+                Destroy(charge.gameObject);
+            }
+            else
+            {
+                _blasterChargePool.Return(charge);
+            }
+
             charge.OnDestruction -= ReturnCharge;
         }
 

@@ -1,5 +1,5 @@
+using Logic.Services;
 using Logic.Spaceships.Services;
-using Logic.Visual;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
@@ -7,9 +7,10 @@ namespace Logic.Spaceships.Weapon
     public abstract class BaseWeapon : MonoBehaviour
     {
         [SerializeField] protected Transform _shotPoint;
-        [SerializeField] protected Effect _hitEffectPrefab;
         [SerializeField] [Min(0)] protected float _damage = 50;
         [SerializeField] [Min(0)] protected float _reloadTime = 0.25f;
+        
+        protected EffectManager _effectManager = EffectManager.Instance;
 
         public DamageAgent DamageAgent { get; set; }
         public float ReloadTime => _reloadTime;

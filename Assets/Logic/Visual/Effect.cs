@@ -1,4 +1,5 @@
 using System;
+using Logic.Data;
 using UnityEngine;
 
 namespace Logic.Visual
@@ -6,9 +7,10 @@ namespace Logic.Visual
     public class Effect : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _particleSystem;
-
-        public ParticleSystem ParticleSystem => _particleSystem;
-        public Action Callback { get; set; }
+        [SerializeField] private EffectType _type;
+        
+        public Action<Effect> Callback { get; set; }
+        public EffectType Type => _type;
         
         private void Awake()
         {
@@ -19,7 +21,7 @@ namespace Logic.Visual
 
         private void OnParticleSystemStopped()
         {
-            Callback?.Invoke();
+            Callback?.Invoke(this);
             Callback = null;
         }
     }

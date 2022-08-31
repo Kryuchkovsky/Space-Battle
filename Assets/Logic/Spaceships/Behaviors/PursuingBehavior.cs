@@ -6,14 +6,24 @@ namespace Logic.Spaceships.Behaviors
 {
     public class PursuingBehavior : IMoveable
     {
+        private const float MAX_AXIAL_OFFSET = 0.5f;
+        private const float MAX_DISTANCE_FACTOR = 6;
+        private const float MIN_ANGLE_FOR_GOING_AWAY = 30;
+
+        private readonly float _minDistance;
+        private readonly float _maxDistance;
+        
         private Vector2 _randomDirection;
         private Vector3 _up;
         private Quaternion _rotation;
-        private float _rotationSpeed = 60;
-        private float _minDistance = 200;
-        private float _maxDistance = 700;
         private bool _isGoindAway;
 
+        public PursuingBehavior(Spaceship spaceship)
+        {
+            _minDistance = 180 / spaceship.RotationSpeed * spaceship.MovementSpeed;
+            _maxDistance = _minDistance * MAX_DISTANCE_FACTOR;
+        }
+        
         public void Move(Spaceship spaceship)
         {
             spaceship.transform.position += spaceship.transform.forward * spaceship.MovementSpeed * Time.deltaTime;
@@ -27,27 +37,26 @@ namespace Logic.Spaceships.Behaviors
             var angle = Vector3.Angle(spaceship.transform.forward, direction);
             var distance = Vector3.Distance(spaceship.transform.position, spaceship.Target.position);
 
-            if (distance < _minDistance || distance < _maxDistance && angle > 30)
+            if (distance < _minDistance || distance < _maxDistance && angle > MIN_ANGLE_FOR_GOING_AWAY)
             {
-                var look = -direction + spaceship.transform.forward * _randomDirection.x + spaceship.transform.right * _randomDirection.y;
-                var temp = spaceship.transform.up + spaceship.transform.right;
-                _up = new Vector3(Random.Range(-temp.x, temp.x), Random.Range(-temp.y, temp.y), Random.Range(-temp.z, temp.z));
-                var to = Quaternion.LookRotation(look);
-                _rotation = Quaternion.RotateTowards(spaceship.transform.rotation, to, _rotationSpeed * Time.deltaTime);
-                _isGoindAway = false;
+                var forward = -direction + spaceship.transform.forward * _randomDirection.x + spaceship.transform.right * _randomDirection.y;
+                var offset = spaceship.transform.up + spaceship.transform.right;
+                _up = new Vector3(Random.Range(-offset.x, offset.x), Random.Range(-offset.y, offset.y), Random.Range(-offset.z, offset.z));
+                _rotation = Quaternion.LookRotation(forward);
+                _isGoindAway = true;
             }
             else
             {
-                _rotation = Quaternion.RotateTowards(spaceship.transform.rotation, Quaternion.LookRotation(direction, _up), _rotationSpeed * Time.deltaTime);
+                _rotation = Quaternion.LookRotation(direction, _up);
 
-                if (!_isGoindAway)
+                if (_isGoindAway)
                 {
-                    _isGoindAway = true;
-                    _randomDirection = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f));
+                    _isGoindAway = false;
+                    _randomDirection = new Vector2(Random.Range(-MAX_AXIAL_OFFSET, MAX_AXIAL_OFFSET), Random.Range(-MAX_AXIAL_OFFSET, MAX_AXIAL_OFFSET));
                 }
-                
             }
 
+            _rotation = Quaternion.RotateTowards(spaceship.transform.rotation, _rotation, spaceship.RotationSpeed * Time.deltaTime);
             spaceship.transform.rotation = _rotation;
         }
     }

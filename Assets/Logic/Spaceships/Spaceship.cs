@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Cinemachine;
+using Logic.Data;
+using Logic.Services;
 using Logic.Spaceships.Interfaces;
 using Logic.Spaceships.Services;
 using UnityEngine;
@@ -9,8 +11,6 @@ namespace Logic.Spaceships
 {
     public class Spaceship : MonoBehaviour
     {
-        public event Action OnSpaceshipDestroy;
-
         [SerializeField] private List<BaseWeaponHolder> _weaponHolders;
         [SerializeField] private CinemachineVirtualCamera _camera;
         [SerializeField] private MeshRenderer _meshRenderer;
@@ -18,7 +18,9 @@ namespace Logic.Spaceships
         [SerializeField] private TouchAgent _touchAgent;
         [SerializeField] [Min(0)] private float _durabilityPoints = 500;
         [SerializeField] [Min(0)] private float _movementSpeed = 120;
+        [SerializeField] [Min(0)] private float _rotationSpeed = 60;
 
+        private EffectManager _effectManager = EffectManager.Instance;
         private IDamageable _damageable;
         private IMoveable _moveable;
         private IShootable _shootable;
@@ -29,6 +31,7 @@ namespace Logic.Spaceships
         public CinemachineVirtualCamera Camera => _camera;
         public Vector3 Size => _meshRenderer.bounds.size;
         public float MovementSpeed => _movementSpeed;
+        public float RotationSpeed => _rotationSpeed;
         public float CurrentDurability { get; set; }
 
         public void Init(IDamageable damageable, IMoveable moveable, IShootable shootable)
@@ -65,9 +68,9 @@ namespace Logic.Spaceships
         public void NextWeapon() => _weaponHolderIndex = _weaponHolderIndex == _weaponHolders.Count - 1 ? 0 : _weaponHolderIndex + 1;
         public void PreviousWeapon() => _weaponHolderIndex = _weaponHolderIndex == 0 ? _weaponHolders.Count - 1 : _weaponHolderIndex - 1;
 
-        public void InvokeDestruction()
+        public void Explode()
         {
-            OnSpaceshipDestroy?.Invoke();
+            _effectManager.CreateEffectByType(EffectType.Explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

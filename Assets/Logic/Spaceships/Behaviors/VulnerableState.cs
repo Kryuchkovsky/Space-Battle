@@ -11,7 +11,7 @@ namespace Logic.Spaceships.Behaviors
 
             if (spaceship.CurrentDurability == 0)
             {
-                spaceship.InvokeDestruction();
+                spaceship.Explode();
             }
         }
     }

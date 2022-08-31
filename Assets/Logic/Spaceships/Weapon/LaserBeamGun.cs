@@ -1,3 +1,4 @@
+using Logic.Data;
 using Logic.Spaceships.Services;
 using Logic.Visual;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace Logic.Spaceships.Weapon
 
         private void Awake()
         {
-            _hitEffect = Instantiate(_hitEffectPrefab, transform);
+            _hitEffect = _effectManager.CreateEffectByType(EffectType.Melting, Vector3.zero, Quaternion.identity);
         }
 
         private void Update()
@@ -30,18 +31,16 @@ namespace Logic.Spaceships.Weapon
                     _audioSource.Stop();
                 }
                 
-                if (_hitEffect.ParticleSystem.isPlaying)
-                {
-                    _hitEffect.ParticleSystem.Stop();
-                }
+                _hitEffect.gameObject.SetActive(false);
             }
         }
 
         public override void Shoot(Vector3 endPoint)
         {
             var ray = new Ray(_shotPoint.position, endPoint - _shotPoint.position);
+            var hasHit = Physics.Raycast(ray, out RaycastHit hit);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (hasHit)
             {
                 if (hit.collider.TryGetComponent(out DamageAgent agent))
                 {
@@ -50,20 +49,12 @@ namespace Logic.Spaceships.Weapon
 
                 _hitEffect.transform.position = hit.point;
                 _hitEffect.transform.rotation = Quaternion.LookRotation(-ray.direction);
-                
-                if (!_hitEffect.ParticleSystem.isPlaying)
-                {
-                    _hitEffect.ParticleSystem.Play();
-                }
-            }
-            else if (_hitEffect.ParticleSystem.isPlaying)
-            {
-                _hitEffect.ParticleSystem.Stop();
             }
 
             _delay = _turnOffDelay;
             _lineRenderer.SetPosition(0, _shotPoint.position);
             _lineRenderer.SetPosition(1,  endPoint);
+            _hitEffect.gameObject.SetActive(hasHit);
 
             if (!_audioSource.isPlaying)
             {

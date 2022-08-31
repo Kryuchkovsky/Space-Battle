@@ -1,9 +1,7 @@
 using System.Collections;
-using Logic.Patterns;
 using Logic.Spaceships;
 using Logic.Spaceships.Behaviors;
 using Logic.Spaceships.Services;
-using Logic.Visual;
 using UnityEngine;
 
 namespace Logic.Services
@@ -15,11 +13,9 @@ namespace Logic.Services
         [SerializeField] private DistanceDestructor _distanceDestructor;
         [SerializeField] [Min(0)] private float _maxSpawnRange = 250;
         [SerializeField] [Min(0)] private float _spawnInterval = 5;
-        [SerializeField] [Min(0)] private float _spaceshipSpeed = 120;
 
         private RandomSpaceshipFactory<Spaceship> _spaceshipFactory;
         private RandomSpaceshipFactory<Spaceship> _unfinishedSpaceshipFactory;
-        private ObjectPool<Effect> _destructionEffectPool;
         private Spaceship _player;
         private Spaceship _enemy;
         private WaitForSeconds _interval;
@@ -29,7 +25,6 @@ namespace Logic.Services
         {
             _spaceshipFactory = new RandomSpaceshipFactory<Spaceship>(_data.Spaceships, transform);
             _unfinishedSpaceshipFactory = new RandomSpaceshipFactory<Spaceship>(_data.UnfinishedSpaceships, transform);
-            _destructionEffectPool = new ObjectPool<Effect>(_data.DestructionEffect, transform);
             _interval = new WaitForSeconds(_spawnInterval);
         }
 
@@ -72,11 +67,6 @@ namespace Logic.Services
                     var enemy = _enemy;
                     enemy.Init(new VulnerableState(), new MovingForwardBehavior(), new DisabledShootingBehavior());
                     enemy.transform.position = position;
-                    enemy.OnSpaceshipDestroy += () =>
-                    {
-                        var effect = _destructionEffectPool.Take(enemy.transform.position);
-                        effect.Callback += () => _destructionEffectPool.Return(effect);
-                    };
                     _distanceDestructor.AddSpaceship(enemy);
                     _enemy = null;
                     
