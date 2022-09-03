@@ -1,6 +1,7 @@
 using System.Collections;
 using Logic.Data;
 using Logic.Services;
+using Logic.Spaceships.Services;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
@@ -10,11 +11,10 @@ namespace Logic.Spaceships.Weapon
         private ChargeManager _chargeManager = ChargeManager.Instance;
         private WaitForSeconds _reload;
 
-        public float ChargeSpeed { get; set; } = 1500;
-
-        private void Awake()
+        public override void Init(DamageAgent agent, WeaponData data)
         {
-            _reload = new WaitForSeconds(ReloadTime);
+            base.Init(agent, data);
+            _reload = new WaitForSeconds(_data.ReloadTime);
         }
 
         public override void Shoot(Vector3 endPoint)
@@ -23,8 +23,9 @@ namespace Logic.Spaceships.Weapon
             {
                 var rotation = Quaternion.LookRotation(endPoint - _shotPoint.position);
                 var charge = _chargeManager.Create(_shotPoint.position, rotation);
-                charge.Init(DamageAgent, FiringRange, Damage, ChargeSpeed);
+                charge.Init(_agent, _data);
                 charge.Callback += x => _effectManager.CreateEffectByType(EffectType.Sparks, x.transform.position, x.transform.rotation);
+                _audioSource.PlayOneShot(_data.AudioClip);
                 StartCoroutine(Reload());
             }
         }

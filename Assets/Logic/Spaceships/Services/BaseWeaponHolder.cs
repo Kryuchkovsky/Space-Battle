@@ -1,12 +1,11 @@
+using Logic.Spaceships.Weapon;
 using UnityEngine;
 
 namespace Logic.Spaceships.Services
 {
     public abstract class BaseWeaponHolder : MonoBehaviour
     {
-        [SerializeField] [Min(0)] protected float _reloadTime = 0.25f;
-        [SerializeField] [Min(0)] protected float _damage = 100;
-        [SerializeField] [Min(0)] protected float _firingRange = 10000;
+        [SerializeField] protected WeaponData _data;
         [SerializeField] protected bool _isTurret;
         
         protected DamageAgent _damageAgent;

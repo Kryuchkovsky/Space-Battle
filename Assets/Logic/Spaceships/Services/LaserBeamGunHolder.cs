@@ -14,8 +14,7 @@ namespace Logic.Spaceships.Services
             
             foreach (var weapon in _weapons)
             {
-                weapon.DamageAgent = _damageAgent;
-                weapon.FiringRange = _firingRange;
+                weapon.Init(_damageAgent, _data);
             }
         }
 

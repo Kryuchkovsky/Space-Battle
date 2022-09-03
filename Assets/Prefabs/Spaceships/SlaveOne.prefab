@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179294643}
   - component: {fileID: 179294644}
+  - component: {fileID: 33713162494073562}
   m_Layer: 0
   m_Name: LaserCannon1
   m_TagString: Untagged
@@ -44,7 +45,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe841f030cb4137bbc0c80f0325cfdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 33713162494073562}
   _shotPoint: {fileID: 179294643}
+--- !u!82 &33713162494073562
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179294642}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &785052264
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796193285}
   - component: {fileID: 796193286}
+  - component: {fileID: 5593525334042486101}
   m_Layer: 0
   m_Name: LaserCannon2
   m_TagString: Untagged
@@ -204,7 +303,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe841f030cb4137bbc0c80f0325cfdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioSource: {fileID: 5593525334042486101}
   _shotPoint: {fileID: 796193285}
+--- !u!82 &5593525334042486101
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796193284}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1125886382
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +463,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.70983607, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -521,10 +717,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47323b4bbe34eedb46bf4bddff79c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotPoint: {fileID: 1206685983}
   _audioSource: {fileID: 5531724455543096456}
+  _shotPoint: {fileID: 1206685983}
   _lineRenderer: {fileID: 1206685984}
   _turnOffDelay: 0.25
+  _emissionIntensity: 20
 --- !u!1 &1218688929
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,10 +967,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47323b4bbe34eedb46bf4bddff79c64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shotPoint: {fileID: 1218688930}
   _audioSource: {fileID: 1702795353480458047}
+  _shotPoint: {fileID: 1218688930}
   _lineRenderer: {fileID: 1218688931}
   _turnOffDelay: 0.25
+  _emissionIntensity: 20
 --- !u!1 &1315809501
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,14 +1764,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee084f2ced2f4070a930e6984454f071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reloadTime: 0.25
-  _damage: 100
-  _firingRange: 10000
+  _data:
+    _audioClip: {fileID: 8300000, guid: 6c7115f2fdcc00048a7dad19db92247c, type: 3}
+    _color: {r: 0.17723632, g: 1, b: 0, a: 0}
+    _damage: 100
+    _firingRange: 10000
+    _reloadTime: 0.25
+    _chargeSpeed: 1500
   _isTurret: 0
   _weapons:
   - {fileID: 179294644}
   - {fileID: 796193286}
-  _chargeSpeed: 1500
   _scatterFactor: 0.01
 --- !u!1 &4043227422406904698
 GameObject:
@@ -1819,7 +2020,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.70983607, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2586,9 +2787,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d58fc9a2f44333954042ff4af259c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reloadTime: 0.25
-  _damage: 400
-  _firingRange: 10000
+  _data:
+    _audioClip: {fileID: 8300000, guid: fc57787ca79e9f943ad60489e71ee941, type: 3}
+    _color: {r: 0.1764706, g: 1, b: 0, a: 0}
+    _damage: 300
+    _firingRange: 10000
+    _reloadTime: 0
+    _chargeSpeed: 0
   _isTurret: 0
   _weapons:
   - {fileID: 1218688932}

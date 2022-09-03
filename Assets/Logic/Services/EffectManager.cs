@@ -10,7 +10,7 @@ namespace Logic.Services
 {
     public class EffectManager : MonoBehaviour
     {
-        public static EffectManager Instance = null;
+        public static EffectManager Instance;
 
         [SerializeField] private EffectConfig _config;
 

@@ -8,20 +8,24 @@ namespace Logic.Spaceships.Weapon
     {
         public event Action<BlasterCharge> Callback;
         
+        [SerializeField] private MeshRenderer _meshRenderer;
         [SerializeField] private TrailRenderer _trail;
+        [SerializeField] [Min(0)] private float _emissionIntensity = 20;
 
         private DamageAgent _damageAgent;
+        private WeaponData _data;
         private float _traveledDistance;
-        private float _distance = 10000;
-        private float _damage = 100;
-        private float _speed = 1500;
 
-        public void Init(DamageAgent damageAgent, float distance, float damage, float speed)
+        public void Init(DamageAgent damageAgent, WeaponData data)
         {
             _damageAgent = damageAgent;
-            _distance = distance;
-            _damage = damage;
-            _speed = speed;
+            _data = data;
+            _meshRenderer.material.color = _data.Color;
+            _meshRenderer.material.SetColor("_EmissionColor", _data.Color * _emissionIntensity);
+            _trail.material.color = _data.Color;
+            _trail.material.SetColor("_EmissionColor", _data.Color * _emissionIntensity);
+            _trail.startColor = _data.Color;
+            _trail.endColor = _data.Color;
             _traveledDistance = 0;
         }
 
@@ -32,11 +36,11 @@ namespace Logic.Spaceships.Weapon
 
         public void FlyForward()
         {
-            var step = transform.forward * _speed * Time.deltaTime;
+            var step = transform.forward * _data.ChargeSpeed * Time.deltaTime;
             transform.position += step;
             _traveledDistance += step.magnitude;
 
-            if (_traveledDistance >= _distance)
+            if (_traveledDistance >= _data.FiringRange)
             {
                 Explode();
             }
@@ -53,7 +57,7 @@ namespace Logic.Spaceships.Weapon
         {
             if (other.TryGetComponent(out DamageAgent agent) && _damageAgent != agent)
             {
-                agent.TakeDamage(_damage);
+                agent.TakeDamage(_data.Damage);
                 Explode();
             }
         }

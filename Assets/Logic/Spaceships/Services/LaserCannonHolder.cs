@@ -8,7 +8,6 @@ namespace Logic.Spaceships.Services
     public class LaserCannonHolder : BaseWeaponHolder
     {
         [SerializeField] private List<FastFiringLaserCannon> _weapons;
-        [SerializeField] [Min(0)] private float _chargeSpeed = 1500;
         [SerializeField] private float _scatterFactor = 0.01f;
 
         private WaitForSeconds _weaponSwitching;
@@ -19,24 +18,21 @@ namespace Logic.Spaceships.Services
         public override void Init(DamageAgent damageAgent)
         {
             _damageAgent = damageAgent;
+            _lastWeaponReload = _data.ReloadTime / _weapons.Count;
             _weaponSwitching = new WaitForSeconds(_lastWeaponReload);
-
+            
             foreach (var weapon in _weapons)
             {
-                weapon.DamageAgent = _damageAgent;
-                weapon.ChargeSpeed = _chargeSpeed;
-                weapon.FiringRange = _firingRange;
-                weapon.ReloadTime = _reloadTime;
-                weapon.Damage = _damage;
+                weapon.Init(_damageAgent, _data);
             }
         }
 
         public override Vector3 CalculateFiringDirection(Transform target, float targetSpeed)
         {
-            var time = (target.position - transform.position).magnitude / _chargeSpeed;
+            var time = (target.position - transform.position).magnitude / _data.ChargeSpeed;
             var step = target.forward * targetSpeed * time;
             var distance = (target.position + step - transform.position).magnitude;
-            time = distance / _chargeSpeed;
+            time = distance / _data.ChargeSpeed;
             return target.position + step + target.forward * targetSpeed * time;
         }
 
@@ -55,14 +51,8 @@ namespace Logic.Spaceships.Services
                 var scatter = transform.forward * Random.Range(-offset, offset) + transform.right * Random.Range(-offset, offset);
                 weapon.Shoot(point + scatter);
                 
-                if (_weapons[_weaponIndex].ReloadTime > 0)
+                if (_data.ReloadTime > 0)
                 {
-                    if (_lastWeaponReload != weapon.ReloadTime / _weapons.Count)
-                    {
-                        _lastWeaponReload = weapon.ReloadTime / _weapons.Count;
-                        _weaponSwitching = new WaitForSeconds(_lastWeaponReload);
-                    }
-                    
                     StartCoroutine((IEnumerator) SwitchWeapon());
                 }
             }

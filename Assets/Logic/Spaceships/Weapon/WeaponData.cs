@@ -1,22 +1,33 @@
+using System;
 using UnityEngine;
 
 namespace Logic.Spaceships.Weapon
 {
-    public struct WeaponData
+    [Serializable]
+    public class WeaponData
     {
-        public readonly Color Color;
-        public readonly float Damage;
-        public readonly float FiringRange;
-        public readonly float ReloadTime;
-        public readonly float Speed;
+        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private Color _color = Color.red;
+        [SerializeField] private float _damage = 100;
+        [SerializeField] private float _firingRange = 10000;
+        [SerializeField] private float _reloadTime = 0.25f;
+        [SerializeField] private float _chargeSpeed = 1500;
 
-        public WeaponData(Color color, float firingRange, float damage, float speed, float reloadTime)
+        public AudioClip AudioClip => _audioClip;
+        public Color Color => _color;
+        public float Damage => _damage;
+        public float FiringRange => _firingRange;
+        public float ReloadTime => _reloadTime;
+        public float ChargeSpeed => _chargeSpeed;
+
+        public WeaponData(AudioClip audioClip, Color color, float firingRange, float damage, float chargeSpeed, float reloadTime)
         {
-            Color = color;
-            Damage = damage;
-            FiringRange = firingRange;
-            ReloadTime = reloadTime;
-            Speed = speed;
+            _audioClip = audioClip;
+            _color = color;
+            _damage = damage;
+            _firingRange = firingRange;
+            _reloadTime = reloadTime;
+            _chargeSpeed = chargeSpeed;
         }
     }
 }

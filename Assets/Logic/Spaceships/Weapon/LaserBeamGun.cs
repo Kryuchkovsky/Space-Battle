@@ -7,20 +7,33 @@ namespace Logic.Spaceships.Weapon
 {
     public class LaserBeamGun : BaseWeapon
     {
-        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private LineRenderer _lineRenderer;
         [SerializeField] [Min(0)] private float _turnOffDelay = 0.25f;
+        [SerializeField] [Min(0)] private float _emissionIntensity = 20;
 
         private Effect _hitEffect;
         private float _delay;
+        private bool _isInit;
 
-        private void Awake()
+        public override void Init(DamageAgent agent, WeaponData data)
         {
-            _hitEffect = _effectManager.CreateEffectByType(EffectType.Melting, Vector3.zero, Quaternion.identity);
+            base.Init(agent, data);
+            _audioSource.clip = _data.AudioClip;
+            _lineRenderer.material.color = _data.Color;
+            _lineRenderer.material.SetColor("_EmissionColor", _data.Color * _emissionIntensity);
+            _lineRenderer.startColor = _data.Color;
+            _lineRenderer.endColor = _data.Color;
+            _hitEffect = _effectManager.CreateEffectByType(EffectType.Melting, transform.position, Quaternion.identity);
+            _isInit = true;
         }
 
         private void Update()
         {
+            if (!_isInit)
+            {
+                return;
+            }
+            
             _delay = Mathf.Clamp(_delay - Time.deltaTime, 0, _turnOffDelay);
             _lineRenderer.enabled = _delay > 0;
 
@@ -44,7 +57,7 @@ namespace Logic.Spaceships.Weapon
             {
                 if (hit.collider.TryGetComponent(out DamageAgent agent))
                 {
-                    agent.TakeDamage(Damage * Time.deltaTime);
+                    agent.TakeDamage(_data.Damage * Time.deltaTime);
                 }
 
                 _hitEffect.transform.position = hit.point;
