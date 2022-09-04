@@ -219,7 +219,7 @@ MonoBehaviour:
   _meshRenderer: {fileID: 2847630027906958963}
   _damageAgent: {fileID: 2652080427794843391}
   _touchAgent: {fileID: 2044145448832074005}
-  _durabilityPoints: 500
+  _durabilityPoints: 3000
   _movementSpeed: 120
   _rotationSpeed: 60
 --- !u!1001 &95887549182457562
