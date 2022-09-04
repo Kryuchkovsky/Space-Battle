@@ -1,12 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Logic.Spaceships.Weapon;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Logic.Spaceships.Services
 {
     public class LaserCannonHolder : BaseWeaponHolder
     {
+        public override event Action OnShoot;
+        
         [SerializeField] private List<FastFiringLaserCannon> _weapons;
         [SerializeField] private float _scatterFactor = 0.01f;
 
@@ -14,6 +18,7 @@ namespace Logic.Spaceships.Services
         private int _weaponIndex;
         private float _lastWeaponReload;
         private bool _canShoot = true;
+
 
         public override void Init(DamageAgent damageAgent)
         {
@@ -50,6 +55,7 @@ namespace Logic.Spaceships.Services
                 var offset = (point - transform.position).magnitude * _scatterFactor;
                 var scatter = transform.forward * Random.Range(-offset, offset) + transform.right * Random.Range(-offset, offset);
                 weapon.Shoot(point + scatter);
+                OnShoot?.Invoke();
                 
                 if (_data.ReloadTime > 0)
                 {

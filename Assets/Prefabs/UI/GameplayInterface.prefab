@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6e86c6a3847a8245be64611d3e3ee31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _aimHandler: {fileID: 548931776}
   _inputHandler: {fileID: 850729454547881749}
   _nextWeaponButton: {fileID: 8568555611376080945}
   _previousWeaponButton: {fileID: 5811327115433596986}
@@ -313,6 +314,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 742448748243352386, guid: 691f7f7bcaaba2f438aca4eb31f1c825,
+        type: 3}
+      propertyPath: _maxScale
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 691f7f7bcaaba2f438aca4eb31f1c825, type: 3}
@@ -322,6 +328,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 742448747694420866}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &548931776 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 742448748243352386, guid: 691f7f7bcaaba2f438aca4eb31f1c825,
+    type: 3}
+  m_PrefabInstance: {fileID: 742448747694420866}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28a6ae3203a4c04da05890fd300ccc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1619277940378464985
 PrefabInstance:
   m_ObjectHideFlags: 0

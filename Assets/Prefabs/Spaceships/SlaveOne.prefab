@@ -720,7 +720,7 @@ MonoBehaviour:
   _audioSource: {fileID: 5531724455543096456}
   _shotPoint: {fileID: 1206685983}
   _lineRenderer: {fileID: 1206685984}
-  _turnOffDelay: 0.25
+  _turnOffDelay: 0.05
   _emissionIntensity: 20
 --- !u!1 &1218688929
 GameObject:
@@ -970,7 +970,7 @@ MonoBehaviour:
   _audioSource: {fileID: 1702795353480458047}
   _shotPoint: {fileID: 1218688930}
   _lineRenderer: {fileID: 1218688931}
-  _turnOffDelay: 0.25
+  _turnOffDelay: 0.05
   _emissionIntensity: 20
 --- !u!1 &1315809501
 GameObject:
@@ -1770,7 +1770,7 @@ MonoBehaviour:
     _damage: 100
     _firingRange: 10000
     _reloadTime: 0.25
-    _chargeSpeed: 1500
+    _chargeSpeed: 2500
   _isTurret: 0
   _weapons:
   - {fileID: 179294644}

@@ -8,7 +8,7 @@ namespace Logic.Spaceships.Weapon
     public class LaserBeamGun : BaseWeapon
     {
         [SerializeField] private LineRenderer _lineRenderer;
-        [SerializeField] [Min(0)] private float _turnOffDelay = 0.25f;
+        [SerializeField] [Min(0)] private float _turnOffDelay = 0.1f;
         [SerializeField] [Min(0)] private float _emissionIntensity = 20;
 
         private Effect _hitEffect;
@@ -34,10 +34,14 @@ namespace Logic.Spaceships.Weapon
                 return;
             }
             
-            _delay = Mathf.Clamp(_delay - Time.deltaTime, 0, _turnOffDelay);
             _lineRenderer.enabled = _delay > 0;
 
-            if (!_lineRenderer.enabled)
+            if (_lineRenderer.enabled)
+            {
+                _delay = Mathf.Clamp(_delay - Time.deltaTime, 0, _turnOffDelay);
+                _lineRenderer.SetPosition(0, _shotPoint.position);
+            }
+            else
             {
                 if (_audioSource.isPlaying)
                 {
@@ -65,7 +69,6 @@ namespace Logic.Spaceships.Weapon
             }
 
             _delay = _turnOffDelay;
-            _lineRenderer.SetPosition(0, _shotPoint.position);
             _lineRenderer.SetPosition(1,  endPoint);
             _hitEffect.gameObject.SetActive(hasHit);
 

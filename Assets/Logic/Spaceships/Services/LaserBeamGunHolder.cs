@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Logic.Spaceships.Weapon;
 using UnityEngine;
@@ -6,8 +7,10 @@ namespace Logic.Spaceships.Services
 {
     public class LaserBeamGunHolder : BaseWeaponHolder
     {
-        [SerializeField] private List<LaserBeamGun> _weapons;
+        public override event Action OnShoot;
         
+        [SerializeField] private List<LaserBeamGun> _weapons;
+
         public override void Init(DamageAgent damageAgent)
         {
             _damageAgent = damageAgent;
@@ -27,6 +30,7 @@ namespace Logic.Spaceships.Services
                 if (weapon.IsReady)
                 {
                     weapon.Shoot(point);
+                    OnShoot?.Invoke();
                 }
             }
         }

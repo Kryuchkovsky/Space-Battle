@@ -1,3 +1,4 @@
+using System;
 using Logic.Spaceships.Weapon;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Logic.Spaceships.Services
 {
     public abstract class BaseWeaponHolder : MonoBehaviour
     {
+        public abstract event Action OnShoot;
+        
         [SerializeField] protected WeaponData _data;
         [SerializeField] protected bool _isTurret;
         

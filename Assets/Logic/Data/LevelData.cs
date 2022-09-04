@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Logic.Spaceships;
-using Logic.Visual;
 using UnityEngine;
 
 namespace Logic.Data

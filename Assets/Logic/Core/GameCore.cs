@@ -29,6 +29,7 @@ namespace Logic.Core
             _gameplayInterface.gameObject.SetActive(false);
             
             _player.TouchAgent.OnTouch += StartGame;
+            _player.OnShoot += _gameplayInterface.AimHandler.IncreaseAim;
             _gameplayInterface.NextWeaponButton.gameObject.SetActive(_player.HasVariousWeapons);
             _gameplayInterface.PreviousWeaponButton.gameObject.SetActive(_player.HasVariousWeapons);
             _gameplayInterface.NextWeaponButton.onClick.AddListener(_player.NextWeapon);
@@ -38,6 +39,7 @@ namespace Logic.Core
         private void OnDestroy()
         {
             _player.TouchAgent.OnTouch -= StartGame;
+            _player.OnShoot -= _gameplayInterface.AimHandler.IncreaseAim;
             _gameplayInterface.NextWeaponButton.onClick.RemoveListener(_player.NextWeapon);
             _gameplayInterface.PreviousWeaponButton.onClick.RemoveListener(_player.NextWeapon);
         }

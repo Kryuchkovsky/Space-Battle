@@ -11,6 +11,8 @@ namespace Logic.Spaceships
 {
     public class Spaceship : MonoBehaviour
     {
+        public event Action OnShoot;
+        
         [SerializeField] private List<BaseWeaponHolder> _weaponHolders;
         [SerializeField] private CinemachineVirtualCamera _camera;
         [SerializeField] private MeshRenderer _meshRenderer;
@@ -45,6 +47,7 @@ namespace Logic.Spaceships
             foreach (var weaponHolder in _weaponHolders)
             {
                 weaponHolder.Init(_damageAgent);
+                weaponHolder.OnShoot += () => OnShoot?.Invoke();
             }
             
             _damageAgent.OnDamageTake += TakeDamage;
@@ -74,13 +77,5 @@ namespace Logic.Spaceships
             _effectManager.CreateEffectByType(EffectType.Explosion, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-    }
-
-    public enum SpaceshipType
-    {
-        MilleniumFalcon,
-        SlaveOne,
-        ThrantaClassCorvette,
-        ValorClassCruiser
     }
 }
